@@ -1,3 +1,4 @@
+// @ts-ignore
 import './globals.css';
 
 import type { Metadata } from 'next';
@@ -19,7 +20,11 @@ export default function Layout({
     children: ReactNode;
 }>): ReactElement {
     return (
-        <html lang="en">
+        <html
+            lang="en"
+            data-env={process.env.APP_ENV}
+            data-version={process.env.npm_package_version}
+        >
             <body className={inter.className}>
                 <NavMain />
 

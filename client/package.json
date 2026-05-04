@@ -4,9 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
     "lint": "next lint",
+    "build": "next build",
+    "build:stage": "APP_ENV=stage next build",
+    "build:production": "APP_ENV=production next build",
+    "start": "next start",
     "start:php": "php -S localhost:8080 -t out"
   },
   "dependencies": {

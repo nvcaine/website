@@ -2,11 +2,9 @@ import Link from 'next/link';
 import { ReactElement } from 'react';
 
 export default function HomePage(): ReactElement {
-    const value: string = process.env.APP_ENV || '[default]';
-
     return (
         <div className="pt-10 md:pt-0">
-            <h1>Welcome to my website - {value}</h1>
+            <h1>Welcome to my website</h1>
             <p>
                 I am a software developer passionate about code. To me, coding
                 is equal parts art and science. This is why throughout my career

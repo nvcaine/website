@@ -3,7 +3,8 @@
 /.idea/
 
 # dependencies
-/node_modules
+/client/node_modules
+/client/yarn.lock
 /.pnp
 .pnp.js
 .yarn/install-state.gz

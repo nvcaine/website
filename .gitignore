@@ -4,6 +4,8 @@
 
 # dependencies
 /client/node_modules
+/client/.next
+/client/out
 /client/yarn.lock
 /.pnp
 .pnp.js

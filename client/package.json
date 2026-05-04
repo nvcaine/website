@@ -7,9 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy:local": "next build && cp -R out/ ~/Sites/web && clear",
-    "deploy:stage": "APP_ENV=stage next build && cp -R out/ ~/Sites/web && clear",
-    "deploy:production": "APP_ENV=production next build && cp -R out/ ~/Sites/web && clear"
+    "start:php": "php -S localhost:8080 -t out"
   },
   "dependencies": {
     "react": "^18",

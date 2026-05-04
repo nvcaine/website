@@ -3,10 +3,13 @@
 /.idea/
 
 # dependencies
+/cdk/node_modules
 /client/node_modules
 /client/.next
 /client/out
+/cdk/yarn.lock
 /client/yarn.lock
+/cdk/app/package-lock.json
 /.pnp
 .pnp.js
 .yarn/install-state.gz

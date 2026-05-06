@@ -1,6 +1,6 @@
 {
     "cloudfront": {
-        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/268fd69e-11a3-421f-91ca-804e9e92fb67",
+        "certArn": "arn:aws:acm:us-east-1:975375540779:certificate/268fd69e-11a3-421f-91ca-804e9e92fb67",
         "errorResponses": [
             {
                 "httpStatus": 401,
@@ -15,5 +15,32 @@
     "s3": {
         "name": "website",
         "path": "/latest"
+    },
+    "acl": {
+        "props": {
+            "scope": "CLOUDFRONT",
+            "defaultAction": {
+                "block": {}
+            },
+            "visibilityConfig": {
+                "sampledRequestsEnabled": true,
+                "cloudWatchMetricsEnabled": true,
+                "metricName": "cdn_acl_metric"
+            },
+            "name": "cdn.webAcl"
+        },
+
+        "ipSetV6": {
+            "name": "allow.list.ipv6",
+            "scope": "CLOUDFRONT",
+            "ipAddressVersion": "IPV6",
+            "addresses": [""]
+        },
+        "ipSetV4": {
+            "name": "allow.list.ipv4",
+            "scope": "CLOUDFRONT",
+            "ipAddressVersion": "IPV4",
+            "addresses": [""]
+        }
     }
 }

@@ -10,6 +10,7 @@
     "license": "ISC",
     "dependencies": {
         "aws-cdk": "^2.1120.0",
+        "config": "^4.4.1",
         "typescript": "^6.0.3"
     }
 }

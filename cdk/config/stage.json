@@ -1,0 +1,19 @@
+{
+    "cloudfront": {
+        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/268fd69e-11a3-421f-91ca-804e9e92fb67",
+        "errorResponses": [
+            {
+                "httpStatus": 401,
+                "responsePagePath": "/error.html"
+            },
+            {
+                "httpStatus": 403,
+                "responsePagePath": "/error.html"
+            }
+        ]
+    },
+    "s3": {
+        "name": "website",
+        "path": "/latest"
+    }
+}

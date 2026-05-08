@@ -4,7 +4,10 @@ import { AbstractConfigStack } from './AbstractConfigStack';
 import { Bucket, BucketProps, IBucket } from 'aws-cdk-lib/aws-s3';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
 import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
-import { S3BucketOrigin, S3BucketOriginWithOACProps } from 'aws-cdk-lib/aws-cloudfront-origins';
+import {
+    S3BucketOrigin,
+    S3BucketOriginWithOACProps
+} from 'aws-cdk-lib/aws-cloudfront-origins';
 import {
     CfnIPSet,
     CfnIPSetProps,
@@ -143,10 +146,23 @@ export class AppStack extends AbstractConfigStack {
      * @param ipSetV4Arn the ARN of the version 4 IP set
      * @private
      */
-    private getRules(ipSetV6Arn: string, ipSetV4Arn: string): CfnWebACL.RuleProperty[] {
+    private getRules(
+        ipSetV6Arn: string,
+        ipSetV4Arn: string
+    ): CfnWebACL.RuleProperty[] {
         return [
-            this.getIpSetRule(ipSetV6Arn, 'ipSetV6AllowList', 0, 'rhc_acl_metric_ipv6'),
-            this.getIpSetRule(ipSetV4Arn, 'ipSetV4AllowList', 1, 'rhc_acl_metric_ipv4')
+            this.getIpSetRule(
+                ipSetV6Arn,
+                'ipSetV6AllowList',
+                0,
+                'rhc_acl_metric_ipv6'
+            ),
+            this.getIpSetRule(
+                ipSetV4Arn,
+                'ipSetV4AllowList',
+                1,
+                'rhc_acl_metric_ipv4'
+            )
         ];
     }
 
@@ -162,7 +178,9 @@ export class AppStack extends AbstractConfigStack {
         origin: IOrigin,
         certificate?: ICertificate
     ): IDistribution {
-        const errorResponses: ErrorResponse[] = this.config.get('cloudfront.errorResponses');
+        const errorResponses: ErrorResponse[] = this.config.get(
+            'cloudfront.errorResponses'
+        );
         const domainNames: string[] = this.config.get('cloudfront.domainNames');
         const defaultBehavior: BehaviorOptions = {
             origin,
@@ -199,9 +217,15 @@ export class AppStack extends AbstractConfigStack {
      * @private
      */
     private getCertificate(): ICertificate {
-        const certificateArn: string = this.config.get('cloudfront.certificateArn');
+        const certificateArn: string = this.config.get(
+            'cloudfront.certificateArn'
+        );
 
-        return Certificate.fromCertificateArn(this, this.getId('certificate'), certificateArn);
+        return Certificate.fromCertificateArn(
+            this,
+            this.getId('certificate'),
+            certificateArn
+        );
     }
 
     /**
@@ -209,9 +233,14 @@ export class AppStack extends AbstractConfigStack {
      * @private
      */
     private getHostedZone(): IHostedZone {
-        const attributes: HostedZoneAttributes = this.config.get('route53.hostedZone');
+        const attributes: HostedZoneAttributes =
+            this.config.get('route53.hostedZone');
 
-        return HostedZone.fromHostedZoneAttributes(this, this.getId('zone'), attributes);
+        return HostedZone.fromHostedZoneAttributes(
+            this,
+            this.getId('zone'),
+            attributes
+        );
     }
 
     /**
@@ -220,9 +249,14 @@ export class AppStack extends AbstractConfigStack {
      * @param distribution the object that the record points to
      * @private
      */
-    private getARecord(zone: IHostedZone, distribution: IDistribution): ARecord {
+    private getARecord(
+        zone: IHostedZone,
+        distribution: IDistribution
+    ): ARecord {
         const recordName: string = this.config.get('route53.name');
-        const target: RecordTarget = RecordTarget.fromAlias(new CloudFrontTarget(distribution));
+        const target: RecordTarget = RecordTarget.fromAlias(
+            new CloudFrontTarget(distribution)
+        );
         const props: ARecordProps = {
             zone,
             recordName,

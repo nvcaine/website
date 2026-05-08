@@ -1,6 +1,7 @@
 {
     "cloudfront": {
-        "certArn": "arn:aws:acm:us-east-1:975375540779:certificate/268fd69e-11a3-421f-91ca-804e9e92fb67",
+        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/268fd69e-11a3-421f-91ca-804e9e92fb67",
+        "domainNames": ["cdn.stage.romihalasz.com"],
         "errorResponses": [
             {
                 "httpStatus": 401,
@@ -10,8 +11,7 @@
                 "httpStatus": 403,
                 "responsePagePath": "/error.html"
             }
-        ],
-        "domainNames": ["cdn.stage.romihalasz.com"]
+        ]
     },
 
     "s3": {
@@ -20,39 +20,39 @@
     },
 
     "acl": {
+        "ipSetV6": {
+            "addresses": ["2a02:2f09:3503:4800:5954:4c9f:7f77:bf4e"],
+            "ipAddressVersion": "IPV6",
+            "name": "allow.list.ipv6",
+            "scope": "CLOUDFRONT"
+        },
+
+        "ipSetV4": {
+            "addresses": ["86.124.142.7"],
+            "ipAddressVersion": "IPV4",
+            "name": "allow.list.ipv4",
+            "scope": "CLOUDFRONT"
+        },
+
         "props": {
-            "scope": "CLOUDFRONT",
             "defaultAction": {
                 "block": {}
             },
+            "name": "cdn.webAcl",
+            "scope": "CLOUDFRONT",
             "visibilityConfig": {
                 "sampledRequestsEnabled": true,
                 "cloudWatchMetricsEnabled": true,
                 "metricName": "rhc_acl_metric"
-            },
-            "name": "cdn.webAcl"
-        },
-
-        "ipSetV6": {
-            "name": "allow.list.ipv6",
-            "scope": "CLOUDFRONT",
-            "ipAddressVersion": "IPV6",
-            "addresses": ["2a02:2f09:3503:4800:5954:4c9f:7f77:bf4e"]
-        },
-
-        "ipSetV4": {
-            "name": "allow.list.ipv4",
-            "scope": "CLOUDFRONT",
-            "ipAddressVersion": "IPV4",
-            "addresses": ["86.124.142.7"]
+            }
         }
     },
 
     "route53": {
-        "name": "cdn",
+        "name": "cdn.record",
         "hostedZone": {
-            "zoneName": "stage.romihalasz.com",
-            "hostedZoneId": "Z089843128B8U30FZM0FK"
+            "hostedZoneId": "Z089843128B8U30FZM0FK",
+            "zoneName": "stage.romihalasz.com"
         }
     }
 }

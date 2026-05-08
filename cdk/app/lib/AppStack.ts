@@ -1,20 +1,10 @@
 import { Construct } from 'constructs';
 import { StackProps } from 'aws-cdk-lib/core';
-import { Bucket, BucketProps, IBucket } from 'aws-cdk-lib/aws-s3';
-import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
-import {
-    AllowedMethods,
-    BehaviorOptions,
-    Distribution,
-    DistributionProps,
-    IDistribution,
-    ViewerProtocolPolicy
-} from 'aws-cdk-lib/aws-cloudfront';
-import {
-    S3BucketOrigin,
-    S3BucketOriginWithOACProps
-} from 'aws-cdk-lib/aws-cloudfront-origins';
 import { AbstractConfigStack } from './AbstractConfigStack';
+import { Bucket, BucketProps, IBucket } from 'aws-cdk-lib/aws-s3';
+import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
+import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
+import { S3BucketOrigin, S3BucketOriginWithOACProps } from 'aws-cdk-lib/aws-cloudfront-origins';
 import {
     CfnIPSet,
     CfnIPSetProps,
@@ -31,7 +21,16 @@ import {
     IHostedZone,
     RecordTarget
 } from 'aws-cdk-lib/aws-route53';
-import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
+import {
+    AllowedMethods,
+    BehaviorOptions,
+    Distribution,
+    DistributionProps,
+    ErrorResponse,
+    IDistribution,
+    IOrigin,
+    ViewerProtocolPolicy
+} from 'aws-cdk-lib/aws-cloudfront';
 
 export class AppStack extends AbstractConfigStack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -40,15 +39,27 @@ export class AppStack extends AbstractConfigStack {
         const bucket: IBucket = this.getS3Bucket();
         const ipSetV6: IIPSetRef = this.getIpSetV6();
         const ipSetV4: IIPSetRef = this.getIpSetV4();
-        const webAcl: IWebACLRef = this.getWebAcl(ipSetV6, ipSetV4);
-        const distribution: IDistribution = this.getDistribution(
-            bucket,
-            webAcl
+        const rules: CfnWebACL.RuleProperty[] = this.getRules(
+            ipSetV6.ipSetRef.ipSetArn,
+            ipSetV4.ipSetRef.ipSetArn
         );
+        const webAcl: IWebACLRef = this.getWebAcl(rules);
+        const origin: IOrigin = this.getOrigin(bucket);
+        const certificate: ICertificate = this.getCertificate();
+        const distribution: IDistribution = this.getDistribution(
+            webAcl.webAclRef.webAclId,
+            origin,
+            certificate
+        );
+        const zone: IHostedZone = this.getHostedZone();
 
-        this.getARecord(distribution);
+        this.getARecord(zone, distribution);
     }
 
+    /**
+     * Create a bucket using the name in the config
+     * @private
+     */
     private getS3Bucket(): IBucket {
         const bucketName: string = this.config.get('s3.name');
         const props: BucketProps = {
@@ -58,23 +69,36 @@ export class AppStack extends AbstractConfigStack {
         return new Bucket(this, this.getId('bucket'), props);
     }
 
+    /**
+     * Create a version 6 IP set
+     * @private
+     */
     private getIpSetV6(): IIPSetRef {
         const props: CfnIPSetProps = this.config.get('acl.ipSetV6');
 
         return new CfnIPSet(this, this.getId('IPSetV6'), props);
     }
 
+    /**
+     * Create a version 4 IP set
+     * @private
+     */
     private getIpSetV4(): IIPSetRef {
         const props: CfnIPSetProps = this.config.get('acl.ipSetV4');
 
         return new CfnIPSet(this, this.getId('IPSetV4'), props);
     }
 
-    private getWebAcl(ipSetV6: IIPSetRef, ipSetV4: IIPSetRef): IWebACLRef {
+    /**
+     * Create web access control list
+     * @param rules the list of rules to attach to the ACL
+     * @private
+     */
+    private getWebAcl(rules: CfnWebACL.RuleProperty[]): IWebACLRef {
         const configProps: any = this.config.get('acl.props');
         const props: CfnWebACLProps = {
             ...configProps,
-            rules: this.getAclRules(ipSetV6, ipSetV4)
+            rules
         };
 
         return new CfnWebACL(this, this.getId('acl'), props);
@@ -95,15 +119,15 @@ export class AppStack extends AbstractConfigStack {
         metricName: string
     ): CfnWebACL.RuleProperty {
         return {
-            name,
             action: {
                 allow: {}
             },
+            name,
             priority,
             visibilityConfig: {
-                sampledRequestsEnabled: true,
                 cloudWatchMetricsEnabled: true,
-                metricName
+                metricName,
+                sampledRequestsEnabled: true
             },
             statement: {
                 ipSetReferenceStatement: {
@@ -115,82 +139,94 @@ export class AppStack extends AbstractConfigStack {
 
     /**
      * Create a list of rules for allowing traffic using IPV6 and IPV4 addresses
-     * @param ipSetV6 list V6 IPs to allow access to
-     * @param ipSetV4 list V4 IPs to allow access to
+     * @param ipSetV6Arn the ARN of the version 6 IP set
+     * @param ipSetV4Arn the ARN of the version 4 IP set
      * @private
      */
-    private getAclRules(
-        ipSetV6: IIPSetRef,
-        ipSetV4: IIPSetRef
-    ): CfnWebACL.RuleProperty[] {
+    private getRules(ipSetV6Arn: string, ipSetV4Arn: string): CfnWebACL.RuleProperty[] {
         return [
-            this.getIpSetRule(
-                ipSetV6.ipSetRef.ipSetArn,
-                'ipSetV6AllowList',
-                0,
-                'rhc_acl_metric_ipv6'
-            ),
-            this.getIpSetRule(
-                ipSetV4.ipSetRef.ipSetArn,
-                'ipSetV4AllowList',
-                1,
-                'rhc_acl_metric_ipv4'
-            )
+            this.getIpSetRule(ipSetV6Arn, 'ipSetV6AllowList', 0, 'rhc_acl_metric_ipv6'),
+            this.getIpSetRule(ipSetV4Arn, 'ipSetV4AllowList', 1, 'rhc_acl_metric_ipv4')
         ];
     }
 
-    private getDistribution(bucket: IBucket, acl: IWebACLRef): IDistribution {
+    /**
+     * Create a CloudFront distribution
+     * @param webAclId the access control list ID
+     * @param origin the default behavior origin object
+     * @param certificate the TLS certificate
+     * @private
+     */
+    private getDistribution(
+        webAclId: string,
+        origin: IOrigin,
+        certificate?: ICertificate
+    ): IDistribution {
+        const errorResponses: ErrorResponse[] = this.config.get('cloudfront.errorResponses');
+        const domainNames: string[] = this.config.get('cloudfront.domainNames');
+        const defaultBehavior: BehaviorOptions = {
+            origin,
+            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: AllowedMethods.ALLOW_GET_HEAD
+        };
         const props: DistributionProps = {
-            certificate: this.getCertificate(),
-            defaultBehavior: this.getDefaultBehavior(bucket),
-            errorResponses: this.config.get('cloudfront.errorResponses'),
-            webAclId: acl.webAclRef.webAclId,
-            domainNames: this.config.get('cloudfront.domainNames')
+            certificate,
+            defaultBehavior,
+            errorResponses,
+            webAclId,
+            domainNames
         };
 
         return new Distribution(this, this.getId('cdn'), props);
     }
 
-    private getDefaultBehavior(bucket: IBucket): BehaviorOptions {
+    /**
+     * Create a distribution origin object for a given bucket
+     * @param bucket the bucket to use an origin for the default behavior of the distribution
+     * @private
+     */
+    private getOrigin(bucket: IBucket): IOrigin {
         const originPath: string = this.config.get('s3.path');
         const props: S3BucketOriginWithOACProps = {
             originPath
         };
 
-        return {
-            origin: S3BucketOrigin.withOriginAccessControl(bucket, props),
-            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            allowedMethods: AllowedMethods.ALLOW_GET_HEAD
-        };
+        return S3BucketOrigin.withOriginAccessControl(bucket, props);
     }
 
+    /**
+     * Create a certificate object
+     * @private
+     */
     private getCertificate(): ICertificate {
-        const certificateArn: string = this.config.get('cloudfront.certArn');
+        const certificateArn: string = this.config.get('cloudfront.certificateArn');
 
-        return Certificate.fromCertificateArn(
-            this,
-            this.getId('certificate'),
-            certificateArn
-        );
+        return Certificate.fromCertificateArn(this, this.getId('certificate'), certificateArn);
     }
 
+    /**
+     * Get an existing hosted zone object
+     * @private
+     */
     private getHostedZone(): IHostedZone {
-        const attributes: HostedZoneAttributes =
-            this.config.get('route53.hostedZone');
+        const attributes: HostedZoneAttributes = this.config.get('route53.hostedZone');
 
-        return HostedZone.fromHostedZoneAttributes(
-            this,
-            this.getId('zone'),
-            attributes
-        );
+        return HostedZone.fromHostedZoneAttributes(this, this.getId('zone'), attributes);
     }
 
-    private getARecord(distribution: IDistribution): ARecord {
-        const zone: IHostedZone = this.getHostedZone();
+    /**
+     * Create an A record to add a custom domain for the distribution
+     * @param zone the hosted zone used to create the domain record
+     * @param distribution the object that the record points to
+     * @private
+     */
+    private getARecord(zone: IHostedZone, distribution: IDistribution): ARecord {
+        const recordName: string = this.config.get('route53.name');
+        const target: RecordTarget = RecordTarget.fromAlias(new CloudFrontTarget(distribution));
         const props: ARecordProps = {
             zone,
-            recordName: this.config.get('route53.name'),
-            target: RecordTarget.fromAlias(new CloudFrontTarget(distribution))
+            recordName,
+            target
         };
 
         return new ARecord(this, this.getId('record'), props);

@@ -10,12 +10,15 @@
                 "httpStatus": 403,
                 "responsePagePath": "/error.html"
             }
-        ]
+        ],
+        "domainNames": ["cdn.stage.romihalasz.com"]
     },
+
     "s3": {
-        "name": "website",
+        "name": "rhc-website-stage",
         "path": "/latest"
     },
+
     "acl": {
         "props": {
             "scope": "CLOUDFRONT",
@@ -25,7 +28,7 @@
             "visibilityConfig": {
                 "sampledRequestsEnabled": true,
                 "cloudWatchMetricsEnabled": true,
-                "metricName": "cdn_acl_metric"
+                "metricName": "rhc_acl_metric"
             },
             "name": "cdn.webAcl"
         },
@@ -34,13 +37,22 @@
             "name": "allow.list.ipv6",
             "scope": "CLOUDFRONT",
             "ipAddressVersion": "IPV6",
-            "addresses": [""]
+            "addresses": ["2a02:2f09:3503:4800:5954:4c9f:7f77:bf4e"]
         },
+
         "ipSetV4": {
             "name": "allow.list.ipv4",
             "scope": "CLOUDFRONT",
             "ipAddressVersion": "IPV4",
-            "addresses": [""]
+            "addresses": ["86.124.142.7"]
+        }
+    },
+
+    "route53": {
+        "name": "cdn",
+        "hostedZone": {
+            "zoneName": "stage.romihalasz.com",
+            "hostedZoneId": "Z089843128B8U30FZM0FK"
         }
     }
 }

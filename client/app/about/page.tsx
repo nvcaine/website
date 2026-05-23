@@ -11,9 +11,8 @@ export default function Page(): ReactElement {
             </p>
 
             <p>
-                I also included a special section about this website. This
-                section documents the process of implementing, deploying and
-                maintaining this project.
+                If you would like to see examples of my work, please check out
+                the projects section.
             </p>
         </div>
     );

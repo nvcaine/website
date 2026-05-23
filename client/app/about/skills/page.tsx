@@ -6,12 +6,10 @@ export default function Page(): ReactElement {
             <h1>Skills</h1>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                neque odio, cursus sit amet urna ut, eleifend placerat arcu.
-                Donec luctus massa et nibh ullamcorper euismod. Aenean laoreet
-                turpis erat, sit amet placerat mauris dictum ac. Pellentesque
-                habitant morbi tristique senectus et netus et malesuada fames ac
-                turpis egestas.
+                Throughout my career I have had the opportunity to work with
+                many tools and technologies. This section provides a detailed
+                description of the areas I am active in and their associated
+                tools.
             </p>
 
             <div>

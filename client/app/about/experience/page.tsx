@@ -1,4 +1,6 @@
 import { ReactElement } from 'react';
+import { SvgIcon } from '@/app/ui/icons/svg-icon';
+import { ICONS } from '@/app/consts/icons';
 
 export default function Page(): ReactElement {
     return (
@@ -14,9 +16,22 @@ export default function Page(): ReactElement {
                     updating and automating cloud infrastructure and project
                     deployments for an online XR platform.
                 </p>
-                <p>
-                    Tools used: Node.js, Typescript, React, Docker, Jenkins, AWS
-                </p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Node.js" src={ICONS.NODE} showText={true} />
+                    <SvgIcon
+                        alt="Typescript"
+                        showText={true}
+                        src={ICONS.TYPESCRIPT}
+                    />
+                    <SvgIcon src={ICONS.REACT} alt="React" showText={true} />
+                    <SvgIcon src={ICONS.DOCKER} alt="Docker" showText={true} />
+                    <SvgIcon
+                        src={ICONS.JENKINS}
+                        alt="Jenkins"
+                        showText={true}
+                    />
+                    <SvgIcon src={ICONS.AWS} alt="AWS" showText={true} />
+                </div>
             </div>
 
             <div>
@@ -28,7 +43,21 @@ export default function Page(): ReactElement {
                     testing, automation and infrastructure. Additional tasks
                     include technical support for customers.
                 </p>
-                <p>Tools used: Node.js, Typescript, Docker, Jenkins, AWS</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Node.js" src={ICONS.NODE} showText={true} />
+                    <SvgIcon
+                        alt="Typescript"
+                        showText={true}
+                        src={ICONS.TYPESCRIPT}
+                    />
+                    <SvgIcon src={ICONS.DOCKER} alt="Docker" showText={true} />
+                    <SvgIcon
+                        src={ICONS.JENKINS}
+                        alt="Jenkins"
+                        showText={true}
+                    />
+                    <SvgIcon src={ICONS.AWS} alt="AWS" showText={true} />
+                </div>
             </div>
 
             <div>
@@ -40,7 +69,14 @@ export default function Page(): ReactElement {
                     specifications, integrating third-party technologies and
                     handling customer feedback.
                 </p>
-                <p>Main tools used: TypeScript</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon
+                        alt="Typescript"
+                        showText={true}
+                        src={ICONS.TYPESCRIPT}
+                    />
+                    <SvgIcon alt="PHP" showText={true} src={ICONS.PHP} />
+                </div>
             </div>
 
             <div>
@@ -50,7 +86,14 @@ export default function Page(): ReactElement {
                     platform, my tasks included feature implementation,
                     deployment and backend integration.
                 </p>
-                <p>Tools used: Java, Android</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Java" showText={true} src={ICONS.JAVA} />
+                    <SvgIcon
+                        alt="Android"
+                        showText={true}
+                        src={ICONS.ANDROID}
+                    />
+                </div>
             </div>
 
             <div>
@@ -59,7 +102,25 @@ export default function Page(): ReactElement {
                     As Frontend Developer for an online gaming platform, my
                     tasks included feature implementation and testing.
                 </p>
-                <p>Tools used: Javascript, ActionScript 3, HTML 5, CSS 3</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon
+                        alt="Adobe Flex"
+                        showText={true}
+                        src={ICONS.FLEX}
+                    />
+                    <SvgIcon
+                        alt="Javascript"
+                        showText={true}
+                        src={ICONS.JAVASCRIPT}
+                    />
+                    <SvgIcon
+                        alt="Javascript"
+                        showText={true}
+                        src={ICONS.JQUERY}
+                    />
+                    <SvgIcon alt="HTML 5" showText={true} src={ICONS.HTML} />
+                    <SvgIcon alt="CSS 5" showText={true} src={ICONS.CSS} />
+                </div>
             </div>
 
             <div>
@@ -69,10 +130,24 @@ export default function Page(): ReactElement {
                     geo-enabled B2B solutions. My tasks included mainly frontend
                     feature development, and integrating third-party libraries.
                 </p>
-                <p>
-                    Tools used: Adobe Flex, Google Maps, Bing Maps,
-                    OpenStreetMap
-                </p>
+                <div className="flex flex-wrap">
+                    <SvgIcon
+                        alt="Adobe Flex"
+                        showText={true}
+                        src={ICONS.FLEX}
+                    />
+                    <SvgIcon
+                        alt="Google Maps"
+                        showText={true}
+                        src={ICONS.GOOGLE}
+                    />
+                    <SvgIcon alt="Bing Maps" showText={true} src={ICONS.BING} />
+                    <SvgIcon
+                        alt="OpenStreetMap"
+                        showText={true}
+                        src={ICONS.OSM}
+                    />
+                </div>
             </div>
 
             <div>
@@ -81,13 +156,29 @@ export default function Page(): ReactElement {
                     As Web Developer my main focus was implementing websites and
                     online platforms. Tasks include both frontend and backend.
                 </p>
-                <p>Tools used: HTML 5, CSS 3, jQuery, PHP</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="PHP" showText={true} src={ICONS.PHP} />
+                    <SvgIcon alt="jQuery" showText={true} src={ICONS.JQUERY} />
+                    <SvgIcon alt="HTML 5" showText={true} src={ICONS.HTML} />
+                    <SvgIcon alt="CSS 3" showText={true} src={ICONS.CSS} />
+                </div>
             </div>
 
             <div>
                 <h2>Studio 45 2008 - 2010</h2>
                 <p>Developing websites and maintaining existing projects.</p>
-                <p>Tools used: HTML 5, CSS 3, PHP, Wordpress</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="PHP" showText={true} src={ICONS.PHP} />
+                    <SvgIcon
+                        alt="Wordpress"
+                        showText={true}
+                        src={ICONS.WORDPRESS}
+                    />
+
+                    <SvgIcon alt="jQuery" showText={true} src={ICONS.JQUERY} />
+                    <SvgIcon alt="HTML 5" showText={true} src={ICONS.HTML} />
+                    <SvgIcon alt="CSS 3" showText={true} src={ICONS.CSS} />
+                </div>
             </div>
 
             <div>
@@ -97,7 +188,23 @@ export default function Page(): ReactElement {
                     projects. Tasks covered interface and server implementation,
                     testing and maintenance.
                 </p>
-                <p>Tools used: PHP, HTML, CSS, Javascript, jQuery</p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="PHP" showText={true} src={ICONS.PHP} />
+                    <SvgIcon
+                        alt="Wordpress"
+                        showText={true}
+                        src={ICONS.WORDPRESS}
+                    />
+
+                    <SvgIcon alt="jQuery" showText={true} src={ICONS.JQUERY} />
+                    <SvgIcon
+                        alt="Javascript"
+                        showText={true}
+                        src={ICONS.JAVASCRIPT}
+                    />
+                    <SvgIcon alt="HTML 5" showText={true} src={ICONS.HTML} />
+                    <SvgIcon alt="CSS 3" showText={true} src={ICONS.CSS} />
+                </div>
             </div>
         </div>
     );

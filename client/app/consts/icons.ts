@@ -1,4 +1,5 @@
 import android from '../ui/icons/svg/android.svg';
+import angular from '../ui/icons/svg/angular.svg';
 import aws from '../ui/icons/svg/aws.svg';
 import bing from '../ui/icons/svg/bing.svg';
 import css from '../ui/icons/svg/css.svg';
@@ -22,6 +23,7 @@ export const DEFAULT_ICON_WIDTH: number = 32;
 
 export enum ICONS {
     ANDROID = android,
+    ANGULAR = angular,
     AWS = aws,
     BING = bing,
     CSS = css,

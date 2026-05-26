@@ -8,13 +8,6 @@ export default function Page(): ReactElement {
             <h1 className="text-xl mb-4 mt-4">Professional skills</h1>
 
             <p>
-                Throughout my career I have had the opportunity to work with
-                many tools and technologies in many fields, though for most of
-                the time I was active in Web Development. This includes
-                Frontend, Backend and Infrastructure.
-            </p>
-
-            <p>
                 This section provides a detailed description of the areas I am
                 active in and their associated tools.
             </p>

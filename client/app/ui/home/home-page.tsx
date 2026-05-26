@@ -13,7 +13,7 @@ export default function HomePage(): ReactElement {
             <p>
                 My main skills are Frontend and Backend Development,
                 specialising in Web technologies. Additional skills include
-                DevOps, specifically automated testing, complimented by cloud
+                DevOps, specifically automated testing, complemented by cloud
                 infrastructure design, automation, monitoring and maintenance.
                 Please check out the{' '}
                 <Link href="/about" className="font-medium text-blue-500">

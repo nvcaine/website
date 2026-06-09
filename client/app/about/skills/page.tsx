@@ -29,13 +29,13 @@ export default function Page(): ReactElement {
 
                 <div className="flex flex-wrap">
                     <SvgIcon alt="Javascript" src={ICONS.JAVASCRIPT} />
-                    <SvgIcon alt="Javascript" src={ICONS.ANGULAR} />
-                    <SvgIcon alt="Javascript" src={ICONS.REACT} />
-                    <SvgIcon alt="Javascript" src={ICONS.NEXT} />
-                    <SvgIcon alt="Javascript" src={ICONS.BOOTSTRAP} />
-                    <SvgIcon alt="Javascript" src={ICONS.TAILWIND} />
-                    <SvgIcon alt="Javascript" src={ICONS.ANDROID} />
-                    <SvgIcon alt="Javascript" src={ICONS.JAVA} />
+                    <SvgIcon alt="Angular" src={ICONS.ANGULAR} />
+                    <SvgIcon alt="React" src={ICONS.REACT} />
+                    <SvgIcon alt="Next" src={ICONS.NEXT} />
+                    <SvgIcon alt="Bootstrap" src={ICONS.BOOTSTRAP} />
+                    <SvgIcon alt="Tailwind" src={ICONS.TAILWIND} />
+                    <SvgIcon alt="Android" src={ICONS.ANDROID} />
+                    <SvgIcon alt="Java" src={ICONS.JAVA} />
                 </div>
             </div>
 
@@ -52,8 +52,8 @@ export default function Page(): ReactElement {
                     <strong>Node.JS</strong> and <strong>PHP</strong>.
                 </p>
                 <div className="flex flex-wrap">
-                    <SvgIcon alt="Javascript" src={ICONS.NODE} />
-                    <SvgIcon alt="Javascript" src={ICONS.PHP} />
+                    <SvgIcon alt="Node" src={ICONS.NODE} />
+                    <SvgIcon alt="PHP" src={ICONS.PHP} />
                 </div>
             </div>
 
@@ -69,9 +69,9 @@ export default function Page(): ReactElement {
                     <strong>Docker</strong> and <strong>Bash</strong> scripting.
                 </p>
                 <div className="flex flex-wrap">
-                    <SvgIcon alt="Javascript" src={ICONS.JENKINS} />
-                    <SvgIcon alt="Javascript" src={ICONS.DOCKER} />
-                    <SvgIcon alt="Javascript" src={ICONS.BASH} />
+                    <SvgIcon alt="Jenkins" src={ICONS.JENKINS} />
+                    <SvgIcon alt="Docker" src={ICONS.DOCKER} />
+                    <SvgIcon alt="Bash" src={ICONS.BASH} />
                 </div>
             </div>
 
@@ -89,8 +89,8 @@ export default function Page(): ReactElement {
                     deploying the infrastructure running my code.
                 </p>
                 <div className="flex flex-wrap">
-                    <SvgIcon alt="Javascript" src={ICONS.AWS} />
-                    <SvgIcon alt="Javascript" src={ICONS.DOCKER} />
+                    <SvgIcon alt="AWS" src={ICONS.AWS} />
+                    <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                 </div>
             </div>
         </div>

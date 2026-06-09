@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { ReactElement } from 'react';
 import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
+import Link from 'next/link';
 
 export default function Sidebar(): ReactElement {
     return (
@@ -15,24 +16,27 @@ export default function Sidebar(): ReactElement {
             <h2>Full-Stack Cloud Developer</h2>
 
             <div className="flex flex-wrap">
-                <a href="https://github.com/nvcaine/" target="_blank">
+                <Link href="https://github.com/nvcaine/" target="_blank">
                     <SvgIcon alt="Javascript" src={ICONS.GIT} />
-                </a>
-                <a
+                </Link>
+                <Link
                     href="https://www.linkedin.com/in/romihalasz/"
                     target="_blank"
                 >
                     <SvgIcon alt="Javascript" src={ICONS.LINKEDIN} />
-                </a>
-                <a
+                </Link>
+                <Link
                     href="https://stackoverflow.com/users/1014378/romi-halasz"
                     target="_blank"
                 >
                     <SvgIcon alt="Javascript" src={ICONS.STACK} />
-                </a>
-                <a href="https://www.instagram.com/romi.halasz" target="_blank">
+                </Link>
+                <Link
+                    href="https://www.instagram.com/romi.halasz"
+                    target="_blank"
+                >
                     <SvgIcon alt="Javascript" src={ICONS.INSTA} />
-                </a>
+                </Link>
             </div>
         </div>
     );

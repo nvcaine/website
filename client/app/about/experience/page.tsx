@@ -19,11 +19,11 @@ export default function Page(): ReactElement {
                 <div className="flex flex-wrap">
                     <SvgIcon alt="Node.js" src={ICONS.NODE} />
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
-                    <SvgIcon src={ICONS.REACT} alt="React" />
-                    <SvgIcon src={ICONS.ANGULAR} alt="React" />
-                    <SvgIcon src={ICONS.DOCKER} alt="Docker" />
-                    <SvgIcon src={ICONS.JENKINS} alt="Jenkins" />
-                    <SvgIcon src={ICONS.AWS} alt="AWS" />
+                    <SvgIcon alt="React" src={ICONS.REACT} />
+                    <SvgIcon alt="Angular" src={ICONS.ANGULAR} />
+                    <SvgIcon alt="Docker" src={ICONS.DOCKER} />
+                    <SvgIcon alt="Jenkins" src={ICONS.JENKINS} />
+                    <SvgIcon alt="AWS" src={ICONS.AWS} />
                 </div>
             </div>
 
@@ -41,9 +41,9 @@ export default function Page(): ReactElement {
                 <div className="flex flex-wrap">
                     <SvgIcon alt="Node.js" src={ICONS.NODE} />
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
-                    <SvgIcon src={ICONS.DOCKER} alt="Docker" />
-                    <SvgIcon src={ICONS.JENKINS} alt="Jenkins" />
-                    <SvgIcon src={ICONS.AWS} alt="AWS" />
+                    <SvgIcon alt="Docker" src={ICONS.DOCKER} />
+                    <SvgIcon alt="Jenkins" src={ICONS.JENKINS} />
+                    <SvgIcon alt="AWS" src={ICONS.AWS} />
                 </div>
             </div>
 
@@ -92,7 +92,7 @@ export default function Page(): ReactElement {
                 <div className="flex flex-wrap">
                     <SvgIcon alt="Adobe Flex" src={ICONS.FLEX} />
                     <SvgIcon alt="Javascript" src={ICONS.JAVASCRIPT} />
-                    <SvgIcon alt="Javascript" src={ICONS.JQUERY} />
+                    <SvgIcon alt="JQuery" src={ICONS.JQUERY} />
                     <SvgIcon alt="HTML 5" src={ICONS.HTML} />
                     <SvgIcon alt="CSS 5" src={ICONS.CSS} />
                 </div>

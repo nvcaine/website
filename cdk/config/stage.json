@@ -1,0 +1,61 @@
+{
+    "cloudfront": {
+        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/f8b6dec3-7bf3-4e55-8ef3-f3326654a40a",
+        "defaultRootObject": "index.html",
+        "domainNames": ["cdn.stage.romihalasz.com"],
+        "errorResponses": [
+            {
+                "httpStatus": 401,
+                "responseHttpStatus": 401,
+                "responsePagePath": "/error.html"
+            },
+            {
+                "httpStatus": 403,
+                "responseHttpStatus": 403,
+                "responsePagePath": "/error.html"
+            }
+        ]
+    },
+
+    "s3": {
+        "name": "rhc-app-files-stage",
+        "path": "/latest"
+    },
+
+    "acl": {
+        "ipSetV6": {
+            "addresses": ["2a02:2f09:3a03:9e00:512b:7808:3d2d:40a1/128"],
+            "ipAddressVersion": "IPV6",
+            "name": "rhc-allow-list-ipv6",
+            "scope": "CLOUDFRONT"
+        },
+
+        "ipSetV4": {
+            "addresses": ["86.124.137.97/32"],
+            "ipAddressVersion": "IPV4",
+            "name": "rhc-allow-list-ipv4",
+            "scope": "CLOUDFRONT"
+        },
+
+        "props": {
+            "defaultAction": {
+                "block": {}
+            },
+            "name": "rhc-cdn-acl",
+            "scope": "CLOUDFRONT",
+            "visibilityConfig": {
+                "sampledRequestsEnabled": true,
+                "cloudWatchMetricsEnabled": true,
+                "metricName": "rhc_acl_metric"
+            }
+        }
+    },
+
+    "route53": {
+        "name": "cdn",
+        "hostedZone": {
+            "hostedZoneId": "Z089843128B8U30FZM0FK",
+            "zoneName": "stage.romihalasz.com"
+        }
+    }
+}

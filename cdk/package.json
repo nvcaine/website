@@ -1,15 +1,26 @@
 {
-    "name": "cdk",
-    "version": "1.0.0",
+    "name": "app",
+    "version": "0.1.0",
     "description": "The website infrastructure",
-    "main": "index.js",
+    "license": "MIT",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "build": "tsc",
+        "watch": "tsc -w",
+        "cdk": "cdk",
+        "diff:stage": "NODE_ENV=stage cdk diff RHCApp --profile stage",
+        "deploy:stage": "NODE_ENV=stage cdk deploy RHCApp --profile stage",
+        "destroy:stage": "NODE_ENV=stage cdk destroy RHCApp --profile stage",
+        "bootstrap:stage": "NODE_ENV=stage cdk bootstrap aws://975375540779/us-east-1 --profile stage"
     },
-    "author": "",
-    "license": "ISC",
+    "devDependencies": {
+        "@types/node": "^24.10.1",
+        "aws-cdk": "2.1120.0",
+        "ts-node": "^10.9.2",
+        "typescript": "~5.9.3"
+    },
     "dependencies": {
-        "aws-cdk": "^2.1120.0",
-        "typescript": "^6.0.3"
+        "aws-cdk-lib": "^2.251.0",
+        "config": "^4.4.1",
+        "constructs": "^10.5.0"
     }
 }

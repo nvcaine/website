@@ -5,13 +5,13 @@
         "domainNames": ["cdn.stage.romihalasz.com"],
         "errorResponses": [
             {
-                "httpStatus": 401,
-                "responseHttpStatus": 401,
+                "httpStatus": 403,
+                "responseHttpStatus": 200,
                 "responsePagePath": "/error.html"
             },
             {
-                "httpStatus": 403,
-                "responseHttpStatus": 403,
+                "httpStatus": 404,
+                "responseHttpStatus": 200,
                 "responsePagePath": "/error.html"
             }
         ]
@@ -24,7 +24,7 @@
 
     "acl": {
         "ipSetV6": {
-            "addresses": ["2a02:2f09:3a03:9e00:512b:7808:3d2d:40a1/128"],
+            "addresses": ["2a02:2f09:3a03:9e00:f810:6e59:b522:ab9c/128"],
             "ipAddressVersion": "IPV6",
             "name": "rhc-allow-list-ipv6",
             "scope": "CLOUDFRONT"

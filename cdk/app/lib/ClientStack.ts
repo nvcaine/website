@@ -197,7 +197,7 @@ export class ClientStack extends AbstractConfigStack {
         const props: DistributionProps = {
             certificate,
             defaultBehavior,
-            // errorResponses,
+            errorResponses,
             defaultRootObject,
             webAclId,
             domainNames

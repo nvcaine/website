@@ -1,21 +1,19 @@
 import { ReactElement } from 'react';
+import { SvgIcon } from '@/app/ui/icons/svg-icon';
+import { ICONS } from '@/app/consts/icons';
 
 export default function Page(): ReactElement {
     return (
         <div className="py-6">
-            <h1>Skills</h1>
+            <h1 className="text-xl mb-4 mt-4">Professional skills</h1>
 
             <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                neque odio, cursus sit amet urna ut, eleifend placerat arcu.
-                Donec luctus massa et nibh ullamcorper euismod. Aenean laoreet
-                turpis erat, sit amet placerat mauris dictum ac. Pellentesque
-                habitant morbi tristique senectus et netus et malesuada fames ac
-                turpis egestas.
+                This section provides a detailed description of the areas I am
+                active in and their associated tools.
             </p>
 
             <div>
-                <h2>Frontend</h2>
+                <h2 className="mt-8 text-lg font-bold">Frontend</h2>
                 <p>
                     Having worked with multiple tools since the early days of{' '}
                     <strong>jQuery</strong> and specialising in Web Application
@@ -28,37 +26,57 @@ export default function Page(): ReactElement {
                     In addition to Web applications, my skills include Android
                     Mobile Development in <strong>Java</strong>.
                 </p>
+
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Javascript" src={ICONS.JAVASCRIPT} />
+                    <SvgIcon alt="Javascript" src={ICONS.ANGULAR} />
+                    <SvgIcon alt="Javascript" src={ICONS.REACT} />
+                    <SvgIcon alt="Javascript" src={ICONS.NEXT} />
+                    <SvgIcon alt="Javascript" src={ICONS.BOOTSTRAP} />
+                    <SvgIcon alt="Javascript" src={ICONS.TAILWIND} />
+                    <SvgIcon alt="Javascript" src={ICONS.ANDROID} />
+                    <SvgIcon alt="Javascript" src={ICONS.JAVA} />
+                </div>
             </div>
 
             <div>
-                <h2>Backend</h2>
+                <h2 className="mt-8 text-lg font-bold">Backend</h2>
                 <p>
                     Starting my professional career as a backend developer, most
-                    of my experience lies in this area. The most common work was
-                    related to implementing <strong>REST APIs</strong>, with
+                    of my experience lies in this area. The bulk of my work
+                    consisted of implementing <strong>REST APIs</strong>, with
                     focus on performance, availability and security.
                 </p>
                 <p>
                     The tools I work with the most include{' '}
                     <strong>Node.JS</strong> and <strong>PHP</strong>.
                 </p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Javascript" src={ICONS.NODE} />
+                    <SvgIcon alt="Javascript" src={ICONS.PHP} />
+                </div>
             </div>
 
             <div>
-                <h2>DevOps</h2>
+                <h2 className="mt-8 text-lg font-bold">DevOps</h2>
                 <p>
-                    Automating processes has multiple advantages. The main one
-                    being ensuring new updates updates do not affect existing
-                    code.
+                    Automating processes offers multiple advantages for Software
+                    Development, reducing human error and work time. Continuous
+                    integration and deployment have become industry standards.
                 </p>
                 <p>
-                    My focus in this area is <strong>Jenkins</strong> and{' '}
-                    <strong>Bash</strong> scripting.
+                    My focus in this area is <strong>Jenkins</strong>,{' '}
+                    <strong>Docker</strong> and <strong>Bash</strong> scripting.
                 </p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Javascript" src={ICONS.JENKINS} />
+                    <SvgIcon alt="Javascript" src={ICONS.DOCKER} />
+                    <SvgIcon alt="Javascript" src={ICONS.BASH} />
+                </div>
             </div>
 
             <div>
-                <h2>Cloud infrastructure</h2>
+                <h2 className="mt-8 text-lg font-bold">Cloud infrastructure</h2>
                 <p>
                     With IaaS becoming ever-more popular, no full-stack skill
                     set is complete without infrastructure. Understanding the
@@ -70,6 +88,10 @@ export default function Page(): ReactElement {
                     <strong>AWS</strong> is the main tool I use for defining and
                     deploying the infrastructure running my code.
                 </p>
+                <div className="flex flex-wrap">
+                    <SvgIcon alt="Javascript" src={ICONS.AWS} />
+                    <SvgIcon alt="Javascript" src={ICONS.DOCKER} />
+                </div>
             </div>
         </div>
     );

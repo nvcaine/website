@@ -6,21 +6,20 @@ export default function HomePage(): ReactElement {
         <div className="pt-10 md:pt-0">
             <h1>Welcome to my website</h1>
             <p>
-                I am a software developer passionate about code. To me, coding
-                is equal parts art and science. This is why throughout my career
-                I addressed the many different sides of Software Development.
+                Hi! My name is Romi, I am a full-stack software developer
+                passionate about code and building amazing products.
             </p>
 
             <p>
                 My main skills are Frontend and Backend Development,
                 specialising in Web technologies. Additional skills include
-                DevOps, specifically automated testing, complimented by
-                infrastructure design, automated deployments, monitoring and
-                maintenance. Please check out the{' '}
+                DevOps, specifically automated testing, complemented by cloud
+                infrastructure design, automation, monitoring and maintenance.
+                Please check out the{' '}
                 <Link href="/about" className="font-medium text-blue-500">
                     About
                 </Link>{' '}
-                page for additional information.
+                page for more information.
             </p>
 
             <p>

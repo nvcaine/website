@@ -31,7 +31,6 @@ import {
     BehaviorOptions,
     Distribution,
     DistributionProps,
-    ErrorResponse,
     IDistribution,
     IOrigin,
     ViewerProtocolPolicy
@@ -182,25 +181,17 @@ export class ClientStack extends AbstractConfigStack {
         origin: IOrigin,
         certificate?: ICertificate
     ): IDistribution {
-        const errorResponses: ErrorResponse[] = this.config.get(
-            'cloudfront.errorResponses'
-        );
-        const domainNames: string[] = this.config.get('cloudfront.domainNames');
-        const defaultRootObject: string | undefined = this.config.get(
-            'cloudfront.defaultRootObject'
-        );
+        const configProps: Object = this.config.get('cloudfront.props');
         const defaultBehavior: BehaviorOptions = {
             origin,
             viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             allowedMethods: AllowedMethods.ALLOW_GET_HEAD
         };
         const props: DistributionProps = {
+            ...configProps,
             certificate,
             defaultBehavior,
-            errorResponses,
-            defaultRootObject,
-            webAclId,
-            domainNames
+            webAclId
         };
 
         return new Distribution(this, this.getId('cdn'), props);

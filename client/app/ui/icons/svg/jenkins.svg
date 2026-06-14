@@ -1,7 +1,7 @@
 <svg width="64px" height="64px" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-    <g id="SVGRepo_bgCarrier" stroke-width="0" />
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-    <g id="SVGRepo_iconCarrier">
+    <g stroke-width="0" />
+    <g stroke-linecap="round" stroke-linejoin="round" />
+    <g>
         <title>file_type_jenkins</title>
         <path d="M19.513,25.173c-.068,0-.136,0-.2-.01C19.378,25.169,19.445,25.173,19.513,25.173Z" style="fill:none" />
         <path d="M18.919,25.087a1.93,1.93,0,0,0,.392.076A1.93,1.93,0,0,1,18.919,25.087Z" style="fill:none" />

@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" aria-label="LinkedIn" role="img" viewBox="0 0 512 512" fill="white" width="64px" height="64px" stroke="white">
-    <g id="SVGRepo_bgCarrier" stroke-width="0" />
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-    <g id="SVGRepo_iconCarrier">
+    <g stroke-width="0" />
+    <g stroke-linecap="round" stroke-linejoin="round" />
+    <g>
         <rect width="512" height="512" rx="15%" fill="#0077b5" />
         <circle cx="142" cy="138" r="37" />
         <path stroke="white" stroke-width="66" d="M244 194v198M142 194v198" />

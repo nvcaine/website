@@ -1,7 +1,7 @@
 <svg width="64px" height="64px" viewBox="0 0 3364.7 3364.7" xmlns="http://www.w3.org/2000/svg" fill="#000000">
-    <g id="SVGRepo_bgCarrier" stroke-width="0" />
-    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
-    <g id="SVGRepo_iconCarrier">
+    <g stroke-width="0" />
+    <g stroke-linecap="round" stroke-linejoin="round" />
+    <g>
         <defs>
             <radialGradient id="0" cx="217.76" cy="3290.99" r="4271.92" gradientUnits="userSpaceOnUse">
                 <stop offset=".09" stop-color="#fa8f21" />

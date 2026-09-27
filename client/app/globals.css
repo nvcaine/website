@@ -11,8 +11,8 @@
 @media (prefers-color-scheme: dark) {
     :root {
         --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 40, 40, 40;
-        --background-end-rgb: 0, 0, 0;
+        --background-start-rgb: 50, 50, 50;
+        --background-end-rgb: 20, 20, 20;
     }
 }
 
@@ -32,7 +32,7 @@ div.landing {
 }
 
 img.landing {
-    height: 200px;
+    max-height: 250px;
     width: 100%;
 }
 

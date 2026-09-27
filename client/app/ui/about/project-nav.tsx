@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { ReactElement } from 'react';
+import MainHeading from '@/app/ui/main-heading';
 
 interface ProjectHeadingProps {
     title: string;
@@ -7,10 +8,10 @@ interface ProjectHeadingProps {
 
 export default function ProjectNav(props: ProjectHeadingProps): ReactElement {
     return (
-        <div className="flex flex-wrap justify-between sticky top-16 py-6 border-b border-gray-600">
-            <h1>{props.title}</h1>
+        <div className="flex flex-wrap justify-between border-b border-gray-600">
+            <MainHeading hideBorder={true}>{props.title}</MainHeading>
             <Link
-                className="flex flex-wrap justify-end font-medium text-blue-500"
+                className="flex flex-wrap justify-end font-medium text-blue-500 items-center"
                 href="/about/projects"
             >
                 <svg

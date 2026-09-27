@@ -1,11 +1,12 @@
 import { ReactElement } from 'react';
 import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
+import MainHeading from '@/app/ui/main-heading';
 
 export default function Page(): ReactElement {
     return (
-        <div className="py-6">
-            <h1 className="text-xl mb-4 mt-4">Professional skills</h1>
+        <>
+            <MainHeading>Professional skills</MainHeading>
 
             <p>
                 This section provides a detailed description of the areas I am
@@ -93,6 +94,6 @@ export default function Page(): ReactElement {
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                 </div>
             </div>
-        </div>
+        </>
     );
 }

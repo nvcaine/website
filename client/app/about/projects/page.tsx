@@ -1,41 +1,12 @@
 import { ReactElement } from 'react';
 import ProjectLink, { ProjectLinkProps } from '@/app/ui/about/project-link';
+import MainHeading from '@/app/ui/main-heading';
 
 const projects: ProjectLinkProps[] = [
     {
         alt: 'Website',
         href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
-        title: 'Website'
-    },
-    {
-        alt: 'Website',
-        href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
-        title: 'Website'
-    },
-    {
-        alt: 'Website',
-        href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
-        title: 'Website'
-    },
-    {
-        alt: 'Website',
-        href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
-        title: 'Website'
-    },
-    {
-        alt: 'Website',
-        href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
-        title: 'Website'
-    },
-    {
-        alt: 'Website',
-        href: '/about/projects/site',
-        imagePath: '/images/photo.jpg',
+        imagePath: '/images/site.jpg',
         title: 'Website'
     }
 ];
@@ -53,8 +24,8 @@ const mapper: Mapper = (project: ProjectLinkProps): ReactElement => (
 
 export default function Page(): ReactElement {
     return (
-        <div className="py-6">
-            <h1 className="text-xl mb-4 mt-4">My work</h1>
+        <>
+            <MainHeading>My work</MainHeading>
 
             <p>
                 This section contains a few selected examples of my personal
@@ -62,6 +33,6 @@ export default function Page(): ReactElement {
             </p>
 
             <div className="flex flex-wrap">{projects.map(mapper)}</div>
-        </div>
+        </>
     );
 }

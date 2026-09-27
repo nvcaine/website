@@ -1,14 +1,18 @@
 import { ReactElement } from 'react';
 import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
+import MainHeading from '@/app/ui/main-heading';
 
 export default function Page(): ReactElement {
     return (
-        <div className="py-6">
-            <h1 className="text-xl mb-4 mt-4">Professional experience</h1>
+        <>
+            <MainHeading>Professional experience</MainHeading>
 
             <div>
-                <p>You can find here information about my work in various companies.</p>
+                <p>
+                    You can find here information about my work in various
+                    companies.
+                </p>
 
                 <h2 className="pt-8 text-lg font-bold">
                     Senior Developer - Qualcomm Austria 2021 - 2024
@@ -171,6 +175,6 @@ export default function Page(): ReactElement {
                     <SvgIcon alt="CSS 3" src={ICONS.CSS} />
                 </div>
             </div>
-        </div>
+        </>
     );
 }

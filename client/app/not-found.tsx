@@ -4,7 +4,7 @@ import { ReactElement } from 'react';
 export default function Page(): ReactElement {
     return (
         <div>
-            <h1 className="text-xl mb-4 mt-4 text-center">
+            <h1 className="text-xl my-4 text-center">
                 The requested resource could not be found
             </h1>
             <p>

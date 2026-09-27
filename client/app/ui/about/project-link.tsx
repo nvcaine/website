@@ -13,7 +13,7 @@ export default function ProjectLink(props: ProjectLinkProps): ReactElement {
     const { alt, href, imagePath, title } = props;
 
     return (
-        <div className="basis-1/4 p-3">
+        <div className="md:basis-1/4 p-3 basis-1/2">
             <Link href={href}>
                 <Image
                     src={imagePath}

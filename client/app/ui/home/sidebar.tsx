@@ -4,16 +4,29 @@ import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
 import Link from 'next/link';
 
-export default function Sidebar(): ReactElement {
+interface SidebarProps {
+    showPhoto?: boolean;
+}
+
+export default function Sidebar(props: SidebarProps): ReactElement {
+    const imageElement: ReactElement | undefined = props.showPhoto ? (
+        <div className="border border-gray-700 p-0.5">
+            <Image
+                src="/images/photo.jpg"
+                className="landing"
+                alt=""
+                width={100}
+            />
+        </div>
+    ) : undefined;
+
     return (
         <div className="flex flex-col items-center">
-            <div className="border border-gray-700 p-0.5">
-                <Image src="" className="landing" alt="" />
-            </div>
+            {imageElement}
 
-            <h1>Romi Halasz</h1>
+            <div>Romi Halasz</div>
 
-            <h2>Full-Stack Cloud Developer</h2>
+            <div>Full-Stack Cloud Developer</div>
 
             <div className="flex flex-wrap">
                 <Link href="https://github.com/nvcaine/" target="_blank">

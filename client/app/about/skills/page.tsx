@@ -13,7 +13,7 @@ export default function Page(): ReactElement {
             </p>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Frontend</h2>
+                <h2 className="pt-8 text-lg font-bold">Frontend</h2>
                 <p>
                     Having worked with multiple tools since the early days of{' '}
                     <strong>jQuery</strong> and specialising in Web Application
@@ -40,7 +40,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Backend</h2>
+                <h2 className="pt-8 text-lg font-bold">Backend</h2>
                 <p>
                     Starting my professional career as a backend developer, most
                     of my experience lies in this area. The bulk of my work
@@ -58,7 +58,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">DevOps</h2>
+                <h2 className="pt-8 text-lg font-bold">DevOps</h2>
                 <p>
                     Automating processes offers multiple advantages for Software
                     Development, reducing human error and work time. Continuous
@@ -76,7 +76,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Cloud infrastructure</h2>
+                <h2 className="pt-8 text-lg font-bold">Cloud infrastructure</h2>
                 <p>
                     With IaaS becoming ever-more popular, no full-stack skill
                     set is complete without infrastructure. Understanding the

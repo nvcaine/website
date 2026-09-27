@@ -6,11 +6,11 @@ export default function Page(): ReactElement {
     return (
         <div className="md:flex md:flex-row py-6">
             <div className="basis-1/4 landing-left">
-                <Sidebar />
+                <Sidebar showPhoto={true}/>
             </div>
 
             <div className="basis-3/4 landing-right">
-                <HomePage />
+                <HomePage/>
             </div>
         </div>
     );

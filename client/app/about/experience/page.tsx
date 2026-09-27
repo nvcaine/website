@@ -8,7 +8,9 @@ export default function Page(): ReactElement {
             <h1 className="text-xl mb-4 mt-4">Professional experience</h1>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <p>You can find here information about my work in various companies.</p>
+
+                <h2 className="pt-8 text-lg font-bold">
                     Senior Developer - Qualcomm Austria 2021 - 2024
                 </h2>
                 <p>
@@ -28,7 +30,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Full-Stack Developer - Wikitude 2019 - 2021
                 </h2>
                 <p>
@@ -48,7 +50,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Web Developer - 123 Form Builder 2017 - 2019
                 </h2>
                 <p>
@@ -65,7 +67,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Mobile Developer - Veridium 2016 - 2017
                 </h2>
                 <p>
@@ -80,7 +82,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Software/Lead Developer - ISoftBet 2011 - 2016
                 </h2>
                 <p>
@@ -99,7 +101,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Software Developer - TechTeam Akela 2010 - 2011
                 </h2>
                 <p>
@@ -117,7 +119,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Web Developer - Interact 2009 - 2010
                 </h2>
                 <p>
@@ -133,7 +135,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Web Developer - Studio 45 2008 - 2010
                 </h2>
                 <p>
@@ -151,7 +153,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Web Developer - InHive Media 2005 - 2008
                 </h2>
                 <p>

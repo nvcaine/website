@@ -6,7 +6,7 @@ export default function Page(): ReactElement {
             <h1 className="text-xl mb-4 mt-4">A little bit about me</h1>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Professional experience
                 </h2>
 
@@ -33,7 +33,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Volunteering</h2>
+                <h2 className="pt-8 text-lg font-bold">Volunteering</h2>
 
                 <p>
                     I am also involved in the local Developer community, as I

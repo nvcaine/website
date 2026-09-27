@@ -32,7 +32,7 @@ export default function Layout({
                     {children}
                 </main>
 
-                <footer className="flex bg-gray-900 border-t border-gray-600 sm:px-24 px-4">
+                <footer className="flex bg-gray-800 border-t border-gray-600 sm:px-24 px-4">
                     <div>&copy; {new Date().getFullYear()} Romuald Halasz</div>
                 </footer>
             </body>

@@ -4,10 +4,13 @@ import { ReactElement } from 'react';
 export default function HomePage(): ReactElement {
     return (
         <div className="pt-10 md:pt-0">
-            <h1>Welcome to my website</h1>
+            <h1 className="text-xl mb-4 mt-4">Welcome to my website</h1>
+
+            <p>Hello,</p>
+
             <p>
-                Hi! My name is Romi, I am a full-stack software developer
-                passionate about code and building amazing products.
+                I am Romi, a full-stack software developer passionate about code
+                and building amazing products.
             </p>
 
             <p>

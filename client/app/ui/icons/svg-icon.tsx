@@ -28,6 +28,7 @@ export function SvgIcon(props: SvgIconProperties): ReactElement {
                 className="inline mx-1"
                 src={src as unknown as StaticImageData}
                 alt={alt}
+                title={alt}
                 height={height || DEFAULT_ICON_HEIGHT}
                 width={width || DEFAULT_ICON_WIDTH}
             />

@@ -31,6 +31,7 @@ export default function Page(): ReactElement {
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
                     <SvgIcon alt="React" src={ICONS.REACT} />
                     <SvgIcon alt="Angular" src={ICONS.ANGULAR} />
+                    <SvgIcon alt="Next.js" src={ICONS.NEXT} />
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                     <SvgIcon alt="Jenkins" src={ICONS.JENKINS} />
                     <SvgIcon alt="AWS" src={ICONS.AWS} />

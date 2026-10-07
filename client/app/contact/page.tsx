@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
 import Link from 'next/link';
-import MainHeading from '@/app/ui/main-heading';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
         <>
-            <MainHeading>How to reach me</MainHeading>
+            <ProjectNav title="How to reach me" label="Home" link="/" />
 
             <p>
                 Whether you have a specific project in mind, a question about my

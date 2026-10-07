@@ -1,12 +1,16 @@
 import { ReactElement } from 'react';
-import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
-import MainHeading from '@/app/ui/main-heading';
+import { SvgIcon } from '@/app/ui/icons/svg-icon';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
         <>
-            <MainHeading>Professional skills</MainHeading>
+            <ProjectNav
+                title="Professional skills"
+                label="About"
+                link="/about"
+            />
 
             <p>
                 This section provides a detailed description of the areas I am

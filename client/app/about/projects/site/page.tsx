@@ -5,7 +5,11 @@ import ProjectNav from '@/app/ui/about/project-nav';
 export default function Page(): ReactElement {
     return (
         <>
-            <ProjectNav title="My website" />
+            <ProjectNav
+                title="My website"
+                link="/about/projects"
+                label="Projects"
+            />
 
             <h2 className="pt-8 text-lg font-bold">Writing the code</h2>
             <p>

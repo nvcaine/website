@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
+import ProjectNav from '@/app/ui/about/project-nav';
 import ProjectLink, { ProjectLinkProps } from '@/app/ui/about/project-link';
-import MainHeading from '@/app/ui/main-heading';
 
 const projects: ProjectLinkProps[] = [
     {
@@ -25,7 +25,7 @@ const mapper: Mapper = (project: ProjectLinkProps): ReactElement => (
 export default function Page(): ReactElement {
     return (
         <>
-            <MainHeading>My work</MainHeading>
+            <ProjectNav title="My work" label="About" link="/about" />
 
             <p>
                 This section contains a few selected examples of my personal

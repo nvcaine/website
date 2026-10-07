@@ -1,12 +1,16 @@
 import { ReactElement } from 'react';
-import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
-import MainHeading from '@/app/ui/main-heading';
+import { SvgIcon } from '@/app/ui/icons/svg-icon';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
         <>
-            <MainHeading>Professional experience</MainHeading>
+            <ProjectNav
+                title="Professional experience"
+                label="About"
+                link="/about"
+            />
 
             <div>
                 <p>

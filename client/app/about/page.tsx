@@ -1,11 +1,11 @@
 import { ReactElement } from 'react';
-import MainHeading from '@/app/ui/main-heading';
 import Link from 'next/link';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
         <>
-            <MainHeading>A little bit about me</MainHeading>
+            <ProjectNav title="A little bit about me" label="Home" link="/" />
 
             <div>
                 <h2 className="pt-8 text-lg font-bold">

@@ -56,9 +56,10 @@ export class ClientStack extends AbstractConfigStack {
             certificate
         );
         const zone: IHostedZone = this.getHostedZone();
+        const target: RecordTarget = this.getRecordTarget(distribution);
 
-        this.getARecord(zone, distribution);
-        this.getAaaaRecord(zone, distribution);
+        this.getARecord(zone, target);
+        this.getAaaaRecord(zone, target);
     }
 
     /**
@@ -242,23 +243,19 @@ export class ClientStack extends AbstractConfigStack {
         );
     }
 
+    private getRecordTarget(distribution: IDistribution): RecordTarget {
+        return RecordTarget.fromAlias(new CloudFrontTarget(distribution));
+    }
+
     /**
      * Create an A record to add a custom domain for the distribution
      * @param zone the hosted zone used to create the domain record
-     * @param distribution the object that the record points to
+     * @param target the target object that the record points to
      * @private
      */
-    private getARecord(
-        zone: IHostedZone,
-        distribution: IDistribution
-    ): ARecord {
-        const recordName: string = this.config.get('route53.name');
-        const target: RecordTarget = RecordTarget.fromAlias(
-            new CloudFrontTarget(distribution)
-        );
+    private getARecord(zone: IHostedZone, target: RecordTarget): ARecord {
         const props: ARecordProps = {
             zone,
-            recordName,
             target
         };
 
@@ -268,20 +265,12 @@ export class ClientStack extends AbstractConfigStack {
     /**
      * Create an AAAA record to add a custom domain for the distribution
      * @param zone the hosted zone used to create the domain record
-     * @param distribution the object that the record points to
+     * @param target the target object that the record points to
      * @private
      */
-    private getAaaaRecord(
-        zone: IHostedZone,
-        distribution: IDistribution
-    ): AaaaRecord {
-        const recordName: string = this.config.get('route53.name');
-        const target: RecordTarget = RecordTarget.fromAlias(
-            new CloudFrontTarget(distribution)
-        );
+    private getAaaaRecord(zone: IHostedZone, target: RecordTarget): AaaaRecord {
         const props: AaaaRecordProps = {
             zone,
-            recordName,
             target
         };
 

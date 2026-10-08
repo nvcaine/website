@@ -1,3 +1,4 @@
+import * as path from 'node:path';
 import { Construct } from 'constructs';
 import { RemovalPolicy, StackProps } from 'aws-cdk-lib/core';
 import { AbstractConfigStack } from './AbstractConfigStack';
@@ -31,16 +32,22 @@ import {
     BehaviorOptions,
     Distribution,
     DistributionProps,
-    FunctionEventType,
     Function,
     IDistribution,
     IOrigin,
     ViewerProtocolPolicy,
     FunctionProps,
     FunctionCode,
-    IFunction
+    IFunction,
+    FunctionAssociation,
+    FunctionEventType
 } from 'aws-cdk-lib/aws-cloudfront';
-import * as path from 'node:path';
+
+interface CustomFunctionAssociation {
+    comment: string;
+    eventType: FunctionEventType;
+    functionName: string;
+}
 
 export class ClientStack extends AbstractConfigStack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -55,15 +62,13 @@ export class ClientStack extends AbstractConfigStack {
         );
         const webAcl: IWebACLRef = this.getWebAcl(rules);
         const origin: IOrigin = this.getOrigin(bucket);
-        const cfFunction: IFunction = this.getCloudFrontFunction(
-            'route-index-handler'
-        );
+        const associations: FunctionAssociation[] = this.getAssociations();
         const certificate: ICertificate = this.getCertificate();
         const distribution: IDistribution = this.getDistribution(
             webAcl.webAclRef.webAclArn,
             origin,
-            cfFunction,
-            certificate
+            certificate,
+            associations
         );
         const zone: IHostedZone = this.getHostedZone();
         const target: RecordTarget = this.getRecordTarget(distribution);
@@ -122,10 +127,15 @@ export class ClientStack extends AbstractConfigStack {
     }
 
     /**
-     * Create the function to add index.html to the current route
+     * Create a CloudFront function by reading the code from the file with the same name
+     * @param functionName the name of the function; needs to match the file in the cf-functions folder
+     * @param comment the description of the function
      * @private
      */
-    private getCloudFrontFunction(functionName: string): IFunction {
+    private getCloudFrontFunction(
+        functionName: string,
+        comment?: string
+    ): IFunction {
         const filePath: string = path.join(
             __dirname,
             'cf-functions',
@@ -135,39 +145,57 @@ export class ClientStack extends AbstractConfigStack {
             filePath
         });
         const props: FunctionProps = {
-            functionName,
             autoPublish: true,
-            code
+            code,
+            comment,
+            functionName
         };
 
         return new Function(this, this.getId('cffunction'), props);
     }
 
     /**
+     * Parse the function associations list and create the functions from files
+     * @private
+     */
+    private getAssociations(): FunctionAssociation[] {
+        const functions: CustomFunctionAssociation[] = this.config.get(
+            'cloudfront.functions'
+        );
+        const mapper = (
+            value: CustomFunctionAssociation
+        ): FunctionAssociation => {
+            const { comment, eventType, functionName } = value;
+
+            return {
+                function: this.getCloudFrontFunction(functionName, comment),
+                eventType
+            };
+        };
+
+        return functions.map(mapper);
+    }
+
+    /**
      * Create a CloudFront distribution
      * @param webAclId the access control list ID
      * @param origin the default behavior origin object
-     * @param cfFunction the CloudFront function to add to the default behaviour
      * @param certificate the TLS certificate
+     * @param functionAssociations the CloudFront functions to associate with the default behaviour
      * @private
      */
     private getDistribution(
         webAclId: string,
         origin: IOrigin,
-        cfFunction: IFunction,
-        certificate?: ICertificate
+        certificate?: ICertificate,
+        functionAssociations?: FunctionAssociation[]
     ): IDistribution {
         const configProps: Object = this.config.get('cloudfront.props');
         const defaultBehavior: BehaviorOptions = {
             origin,
             viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
             allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
-            functionAssociations: [
-                {
-                    eventType: FunctionEventType.VIEWER_REQUEST,
-                    function: cfFunction
-                }
-            ]
+            functionAssociations
         };
         const props: DistributionProps = {
             ...configProps,

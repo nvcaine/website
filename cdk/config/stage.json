@@ -23,10 +23,13 @@
                 }
             ]
         },
-        "functions": [{
-            "comment": "Load the the index.html file for subpages by default",
-            "functionName": "route-index-handler"
-        }]
+        "functions": [
+            {
+                "comment": "Load the the index.html file for subpages by default",
+                "eventType": "viewer-request",
+                "functionName": "route-index-handler"
+            }
+        ]
     },
 
     "s3": {

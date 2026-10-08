@@ -31,10 +31,16 @@ import {
     BehaviorOptions,
     Distribution,
     DistributionProps,
+    FunctionEventType,
+    Function,
     IDistribution,
     IOrigin,
-    ViewerProtocolPolicy
+    ViewerProtocolPolicy,
+    FunctionProps,
+    FunctionCode,
+    IFunction
 } from 'aws-cdk-lib/aws-cloudfront';
+import * as path from 'node:path';
 
 export class ClientStack extends AbstractConfigStack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -49,10 +55,14 @@ export class ClientStack extends AbstractConfigStack {
         );
         const webAcl: IWebACLRef = this.getWebAcl(rules);
         const origin: IOrigin = this.getOrigin(bucket);
+        const cfFunction: IFunction = this.getCloudFrontFunction(
+            'route-index-handler'
+        );
         const certificate: ICertificate = this.getCertificate();
         const distribution: IDistribution = this.getDistribution(
             webAcl.webAclRef.webAclArn,
             origin,
+            cfFunction,
             certificate
         );
         const zone: IHostedZone = this.getHostedZone();
@@ -112,6 +122,64 @@ export class ClientStack extends AbstractConfigStack {
     }
 
     /**
+     * Create the function to add index.html to the current route
+     * @private
+     */
+    private getCloudFrontFunction(functionName: string): IFunction {
+        const filePath: string = path.join(
+            __dirname,
+            'cf-functions',
+            functionName + '.js'
+        );
+        const code: FunctionCode = FunctionCode.fromFile({
+            filePath
+        });
+        const props: FunctionProps = {
+            functionName,
+            autoPublish: true,
+            code
+        };
+
+        return new Function(this, this.getId('cffunction'), props);
+    }
+
+    /**
+     * Create a CloudFront distribution
+     * @param webAclId the access control list ID
+     * @param origin the default behavior origin object
+     * @param cfFunction the CloudFront function to add to the default behaviour
+     * @param certificate the TLS certificate
+     * @private
+     */
+    private getDistribution(
+        webAclId: string,
+        origin: IOrigin,
+        cfFunction: IFunction,
+        certificate?: ICertificate
+    ): IDistribution {
+        const configProps: Object = this.config.get('cloudfront.props');
+        const defaultBehavior: BehaviorOptions = {
+            origin,
+            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+            functionAssociations: [
+                {
+                    eventType: FunctionEventType.VIEWER_REQUEST,
+                    function: cfFunction
+                }
+            ]
+        };
+        const props: DistributionProps = {
+            ...configProps,
+            certificate,
+            defaultBehavior,
+            webAclId
+        };
+
+        return new Distribution(this, this.getId('cdn'), props);
+    }
+
+    /**
      * Create a RuleProperty object
      * @param arn the ARN of the IP Set
      * @param name the name of the rule
@@ -168,34 +236,6 @@ export class ClientStack extends AbstractConfigStack {
                 'rhc_acl_metric_ipv4'
             )
         ];
-    }
-
-    /**
-     * Create a CloudFront distribution
-     * @param webAclId the access control list ID
-     * @param origin the default behavior origin object
-     * @param certificate the TLS certificate
-     * @private
-     */
-    private getDistribution(
-        webAclId: string,
-        origin: IOrigin,
-        certificate?: ICertificate
-    ): IDistribution {
-        const configProps: Object = this.config.get('cloudfront.props');
-        const defaultBehavior: BehaviorOptions = {
-            origin,
-            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            allowedMethods: AllowedMethods.ALLOW_GET_HEAD
-        };
-        const props: DistributionProps = {
-            ...configProps,
-            certificate,
-            defaultBehavior,
-            webAclId
-        };
-
-        return new Distribution(this, this.getId('cdn'), props);
     }
 
     /**

@@ -22,7 +22,11 @@
                     "responsePagePath": "/error.html"
                 }
             ]
-        }
+        },
+        "functions": [{
+            "comment": "Load the the index.html file for subpages by default",
+            "functionName": "route-index-handler"
+        }]
     },
 
     "s3": {

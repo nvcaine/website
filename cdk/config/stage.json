@@ -52,6 +52,12 @@
             "scope": "CLOUDFRONT"
         },
 
+        "logs": {
+            "logGroupName": "aws-waf-logs-rhc-acl",
+            "retention": 7,
+            "removalPolicy": "destroy"
+        },
+
         "props": {
             "defaultAction": {
                 "block": {}

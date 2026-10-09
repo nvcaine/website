@@ -4,6 +4,7 @@ import { RemovalPolicy, StackProps } from 'aws-cdk-lib/core';
 import { AbstractConfigStack } from './AbstractConfigStack';
 import { Bucket, BucketProps, IBucket } from 'aws-cdk-lib/aws-s3';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
+import { ILogGroup, LogGroup, LogGroupProps } from 'aws-cdk-lib/aws-logs';
 import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import {
     S3BucketOrigin,
@@ -12,6 +13,7 @@ import {
 import {
     CfnIPSet,
     CfnIPSetProps,
+    CfnLoggingConfiguration,
     CfnWebACL,
     CfnWebACLProps,
     IIPSetRef,
@@ -60,12 +62,14 @@ export class ClientStack extends AbstractConfigStack {
             ipSetV6.ipSetRef.ipSetArn,
             ipSetV4.ipSetRef.ipSetArn
         );
+        const logGroup: ILogGroup = this.getLogGroup();
         const webAcl: IWebACLRef = this.getWebAcl(rules);
+        const webAclArn: string = webAcl.webAclRef.webAclArn;
         const origin: IOrigin = this.getOrigin(bucket);
         const associations: FunctionAssociation[] = this.getAssociations();
         const certificate: ICertificate = this.getCertificate();
         const distribution: IDistribution = this.getDistribution(
-            webAcl.webAclRef.webAclArn,
+            webAclArn,
             origin,
             certificate,
             associations
@@ -75,6 +79,7 @@ export class ClientStack extends AbstractConfigStack {
 
         this.getARecord(zone, target);
         this.getAaaaRecord(zone, target);
+        this.getLogConfig(webAclArn, logGroup.logGroupArn);
     }
 
     /**
@@ -109,6 +114,16 @@ export class ClientStack extends AbstractConfigStack {
         const props: CfnIPSetProps = this.config.get('acl.ipSetV4');
 
         return new CfnIPSet(this, this.getId('IPSetV4'), props);
+    }
+
+    /**
+     * Create a log group to integrate with the Web ACL
+     * @private
+     */
+    private getLogGroup(): ILogGroup {
+        const props: LogGroupProps = this.config.get('acl.logs');
+
+        return new LogGroup(this, this.getId('acllogs'), props);
     }
 
     /**
@@ -343,5 +358,15 @@ export class ClientStack extends AbstractConfigStack {
         };
 
         return new AaaaRecord(this, this.getId('aaaarecord'), props);
+    }
+
+    private getLogConfig(
+        resourceArn: string,
+        logGroupArn: string
+    ): CfnLoggingConfiguration {
+        return new CfnLoggingConfiguration(this, this.getId('logconfig'), {
+            resourceArn,
+            logDestinationConfigs: [logGroupArn]
+        });
     }
 }

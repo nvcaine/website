@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import config from 'config';
 import { App } from 'aws-cdk-lib/core';
 import { AppStack } from '../lib/AppStack';
 
@@ -10,6 +11,6 @@ new AppStack(app, 'RHCApp', {
         account: process.env.CDK_DEFAULT_ACCOUNT
     },
     stackName: 'RHCApp',
-    description: 'RHC project infrastructure'
-    /* For more information, see https://docs.aws.amazon.com/cdk/latest/guide/environments.html */
+    description: 'RHC project infrastructure',
+    tags: config.get('tags')
 });

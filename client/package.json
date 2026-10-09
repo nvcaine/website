@@ -1,31 +1,33 @@
 {
-  "name": "website",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "lint": "next lint",
-    "build": "next build",
-    "build:stage": "APP_ENV=stage next build",
-    "build:production": "APP_ENV=production next build",
-    "start": "next start",
-    "start:php": "php -S localhost:8080 -t out"
-  },
-  "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.2.3"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "clsx": "^2.1.1",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3",
-    "prettier": "^3.2.5"
-  }
+    "name": "website",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "lint": "next lint",
+        "build": "next build",
+        "build:stage": "APP_ENV=stage next build",
+        "deploy:stage": "sh deploy-stage.sh",
+        "dig:stage": "dig stage.romihalasz.com A +short",
+        "build:production": "APP_ENV=production next build",
+        "start": "next start",
+        "start:php": "php -S localhost:8080 -t out"
+    },
+    "dependencies": {
+        "react": "^18",
+        "react-dom": "^18",
+        "next": "14.2.3"
+    },
+    "devDependencies": {
+        "typescript": "^5",
+        "@types/node": "^20",
+        "@types/react": "^18",
+        "@types/react-dom": "^18",
+        "clsx": "^2.1.1",
+        "postcss": "^8",
+        "tailwindcss": "^3.4.1",
+        "eslint": "^8",
+        "eslint-config-next": "14.2.3",
+        "prettier": "^3.2.5"
+    }
 }

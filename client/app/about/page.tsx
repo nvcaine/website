@@ -1,12 +1,14 @@
 import { ReactElement } from 'react';
+import Link from 'next/link';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
-        <div className="py-6">
-            <h1 className="text-xl mb-4 mt-4">A little bit about me</h1>
+        <>
+            <ProjectNav title="A little bit about me" label="Home" link="/" />
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">
+                <h2 className="pt-8 text-lg font-bold">
                     Professional experience
                 </h2>
 
@@ -21,19 +23,45 @@ export default function Page(): ReactElement {
                 </p>
 
                 <p>
-                    Feel free to browse this section for specific information.
-                    My professional experience and skills are separated to
-                    provide a better description.
+                    To see an in-depth description of my professional skills,
+                    please head over to the{' '}
+                    <Link
+                        href="/about/skills"
+                        className="font-medium text-blue-500"
+                    >
+                        Skills
+                    </Link>{' '}
+                    section.
+                </p>
+
+                <p>
+                    If you want to take a look at my professional history and
+                    information about my work in various companies, please see
+                    the{' '}
+                    <Link
+                        href="/about/experience"
+                        className="font-medium text-blue-500"
+                    >
+                        Experience
+                    </Link>{' '}
+                    section.
                 </p>
 
                 <p>
                     If you would like to see examples of my work, please check
-                    out the projects section.
+                    out the{' '}
+                    <Link
+                        href="/about/projects"
+                        className="font-medium text-blue-500"
+                    >
+                        Projects
+                    </Link>{' '}
+                    section.
                 </p>
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Volunteering</h2>
+                <h2 className="pt-8 text-lg font-bold">Volunteering</h2>
 
                 <p>
                     I am also involved in the local Developer community, as I
@@ -42,6 +70,6 @@ export default function Page(): ReactElement {
                     meetup organizer for Game Developers.
                 </p>
             </div>
-        </div>
+        </>
     );
 }

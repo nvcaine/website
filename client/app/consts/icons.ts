@@ -16,6 +16,7 @@ import javascript from '../ui/icons/svg/javascript.svg';
 import jenkins from '../ui/icons/svg/jenkins.svg';
 import jquery from '../ui/icons/svg/jquery.svg';
 import linkedin from '../ui/icons/svg/linkedin.svg';
+import nest from '../ui/icons/svg/nest.svg';
 import next from '../ui/icons/svg/next.svg';
 import node from '../ui/icons/svg/node.svg';
 import osm from '../ui/icons/svg/osm.svg';
@@ -48,6 +49,7 @@ export enum ICONS {
     JENKINS = jenkins,
     JQUERY = jquery,
     LINKEDIN = linkedin,
+    NEST = nest,
     NEXT = next,
     NODE = node,
     OSM = osm,

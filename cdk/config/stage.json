@@ -1,18 +1,33 @@
 {
+    "tags": {
+        "project": "RHC",
+        "env": "stage"
+    },
     "cloudfront": {
-        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/f8b6dec3-7bf3-4e55-8ef3-f3326654a40a",
-        "defaultRootObject": "index.html",
-        "domainNames": ["cdn.stage.romihalasz.com"],
-        "errorResponses": [
+        "certificateArn": "arn:aws:acm:us-east-1:975375540779:certificate/6cd50db3-9cfe-4c40-ab25-bdc1b796aa84",
+
+        "props": {
+            "defaultRootObject": "index.html",
+            "domainNames": ["stage.romihalasz.com"],
+            "enableIpv6": true,
+            "errorResponses": [
+                {
+                    "httpStatus": 403,
+                    "responseHttpStatus": 200,
+                    "responsePagePath": "/error.html"
+                },
+                {
+                    "httpStatus": 404,
+                    "responseHttpStatus": 200,
+                    "responsePagePath": "/error.html"
+                }
+            ]
+        },
+        "functions": [
             {
-                "httpStatus": 403,
-                "responseHttpStatus": 200,
-                "responsePagePath": "/error.html"
-            },
-            {
-                "httpStatus": 404,
-                "responseHttpStatus": 200,
-                "responsePagePath": "/error.html"
+                "comment": "Load the the index.html file for subpages by default",
+                "eventType": "viewer-request",
+                "functionName": "route-index-handler"
             }
         ]
     },
@@ -24,17 +39,23 @@
 
     "acl": {
         "ipSetV6": {
-            "addresses": ["2a02:2f09:3a03:9e00:f810:6e59:b522:ab9c/128"],
+            "addresses": ["2a02:2f09:3703:cd00:74b5:b821:1dd2:d3d6/128"],
             "ipAddressVersion": "IPV6",
             "name": "rhc-allow-list-ipv6",
             "scope": "CLOUDFRONT"
         },
 
         "ipSetV4": {
-            "addresses": ["86.124.137.97/32"],
+            "addresses": ["86.124.142.138/32"],
             "ipAddressVersion": "IPV4",
             "name": "rhc-allow-list-ipv4",
             "scope": "CLOUDFRONT"
+        },
+
+        "logs": {
+            "logGroupName": "aws-waf-logs-rhc-acl",
+            "retention": 7,
+            "removalPolicy": "destroy"
         },
 
         "props": {
@@ -52,7 +73,6 @@
     },
 
     "route53": {
-        "name": "cdn",
         "hostedZone": {
             "hostedZoneId": "Z089843128B8U30FZM0FK",
             "zoneName": "stage.romihalasz.com"

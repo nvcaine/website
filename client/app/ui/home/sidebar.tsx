@@ -4,16 +4,29 @@ import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
 import Link from 'next/link';
 
-export default function Sidebar(): ReactElement {
+interface SidebarProps {
+    showPhoto?: boolean;
+}
+
+export default function Sidebar(props: SidebarProps): ReactElement {
+    const imageElement: ReactElement | undefined = props.showPhoto ? (
+        <div className="border border-gray-600 p-1">
+            <Image
+                src="/images/photo.jpg"
+                className="landing"
+                alt=""
+                width={100}
+            />
+        </div>
+    ) : undefined;
+
     return (
         <div className="flex flex-col items-center">
-            <div className="border border-gray-700 p-0.5">
-                <Image src="" className="landing" alt="" />
-            </div>
+            {imageElement}
 
-            <h1>Romi Halasz</h1>
+            <div className="pt-3">Romi Halasz</div>
 
-            <h2>Full-Stack Cloud Developer</h2>
+            <div className="text-center">Full-Stack Cloud Developer</div>
 
             <div className="flex flex-wrap">
                 <Link href="https://github.com/nvcaine/" target="_blank">
@@ -30,12 +43,6 @@ export default function Sidebar(): ReactElement {
                     target="_blank"
                 >
                     <SvgIcon alt="Javascript" src={ICONS.STACK} />
-                </Link>
-                <Link
-                    href="https://www.instagram.com/romi.halasz"
-                    target="_blank"
-                >
-                    <SvgIcon alt="Javascript" src={ICONS.INSTA} />
                 </Link>
             </div>
         </div>

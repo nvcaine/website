@@ -21,7 +21,7 @@ export function NavMain(): ReactElement {
     const isAboutPage: boolean = path.includes('/about');
 
     return (
-        <nav className="bg-gray-900 fixed w-full z-20 top-0 start-0 min-h-16 border-b border-gray-600">
+        <nav className="bg-gray-800 fixed w-full z-20 top-0 start-0 min-h-16 border-b border-gray-600">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 md:p-3.5">
                 <NavToggle
                     buttonClass="inline-flex items-center p-1 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"

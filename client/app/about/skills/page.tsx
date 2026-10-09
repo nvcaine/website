@@ -1,11 +1,16 @@
 import { ReactElement } from 'react';
-import { SvgIcon } from '@/app/ui/icons/svg-icon';
 import { ICONS } from '@/app/consts/icons';
+import { SvgIcon } from '@/app/ui/icons/svg-icon';
+import ProjectNav from '@/app/ui/about/project-nav';
 
 export default function Page(): ReactElement {
     return (
-        <div className="py-6">
-            <h1 className="text-xl mb-4 mt-4">Professional skills</h1>
+        <>
+            <ProjectNav
+                title="Professional skills"
+                label="About"
+                link="/about"
+            />
 
             <p>
                 This section provides a detailed description of the areas I am
@@ -13,7 +18,7 @@ export default function Page(): ReactElement {
             </p>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Frontend</h2>
+                <h2 className="pt-8 text-lg font-bold">Frontend</h2>
                 <p>
                     Having worked with multiple tools since the early days of{' '}
                     <strong>jQuery</strong> and specialising in Web Application
@@ -40,7 +45,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Backend</h2>
+                <h2 className="pt-8 text-lg font-bold">Backend</h2>
                 <p>
                     Starting my professional career as a backend developer, most
                     of my experience lies in this area. The bulk of my work
@@ -58,7 +63,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">DevOps</h2>
+                <h2 className="pt-8 text-lg font-bold">DevOps</h2>
                 <p>
                     Automating processes offers multiple advantages for Software
                     Development, reducing human error and work time. Continuous
@@ -76,7 +81,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="mt-8 text-lg font-bold">Cloud infrastructure</h2>
+                <h2 className="pt-8 text-lg font-bold">Cloud infrastructure</h2>
                 <p>
                     With IaaS becoming ever-more popular, no full-stack skill
                     set is complete without infrastructure. Understanding the
@@ -93,6 +98,6 @@ export default function Page(): ReactElement {
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                 </div>
             </div>
-        </div>
+        </>
     );
 }

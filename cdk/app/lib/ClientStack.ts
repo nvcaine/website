@@ -1,8 +1,10 @@
+import * as path from 'node:path';
 import { Construct } from 'constructs';
 import { RemovalPolicy, StackProps } from 'aws-cdk-lib/core';
 import { AbstractConfigStack } from './AbstractConfigStack';
 import { Bucket, BucketProps, IBucket } from 'aws-cdk-lib/aws-s3';
 import { CloudFrontTarget } from 'aws-cdk-lib/aws-route53-targets';
+import { ILogGroup, LogGroup, LogGroupProps } from 'aws-cdk-lib/aws-logs';
 import { Certificate, ICertificate } from 'aws-cdk-lib/aws-certificatemanager';
 import {
     S3BucketOrigin,
@@ -11,6 +13,7 @@ import {
 import {
     CfnIPSet,
     CfnIPSetProps,
+    CfnLoggingConfiguration,
     CfnWebACL,
     CfnWebACLProps,
     IIPSetRef,
@@ -31,11 +34,22 @@ import {
     BehaviorOptions,
     Distribution,
     DistributionProps,
-    ErrorResponse,
+    Function,
     IDistribution,
     IOrigin,
-    ViewerProtocolPolicy
+    ViewerProtocolPolicy,
+    FunctionProps,
+    FunctionCode,
+    IFunction,
+    FunctionAssociation,
+    FunctionEventType
 } from 'aws-cdk-lib/aws-cloudfront';
+
+interface CustomFunctionAssociation {
+    comment: string;
+    eventType: FunctionEventType;
+    functionName: string;
+}
 
 export class ClientStack extends AbstractConfigStack {
     constructor(scope: Construct, id: string, props?: StackProps) {
@@ -48,18 +62,24 @@ export class ClientStack extends AbstractConfigStack {
             ipSetV6.ipSetRef.ipSetArn,
             ipSetV4.ipSetRef.ipSetArn
         );
+        const logGroup: ILogGroup = this.getLogGroup();
         const webAcl: IWebACLRef = this.getWebAcl(rules);
+        const webAclArn: string = webAcl.webAclRef.webAclArn;
         const origin: IOrigin = this.getOrigin(bucket);
+        const associations: FunctionAssociation[] = this.getAssociations();
         const certificate: ICertificate = this.getCertificate();
         const distribution: IDistribution = this.getDistribution(
-            webAcl.webAclRef.webAclArn,
+            webAclArn,
             origin,
-            certificate
+            certificate,
+            associations
         );
         const zone: IHostedZone = this.getHostedZone();
+        const target: RecordTarget = this.getRecordTarget(distribution);
 
-        this.getARecord(zone, distribution);
-        this.getAaaaRecord(zone, distribution);
+        this.getARecord(zone, target);
+        this.getAaaaRecord(zone, target);
+        this.getLogConfig(webAclArn, logGroup.logGroupArn);
     }
 
     /**
@@ -97,6 +117,16 @@ export class ClientStack extends AbstractConfigStack {
     }
 
     /**
+     * Create a log group to integrate with the Web ACL
+     * @private
+     */
+    private getLogGroup(): ILogGroup {
+        const props: LogGroupProps = this.config.get('acl.logs');
+
+        return new LogGroup(this, this.getId('acllogs'), props);
+    }
+
+    /**
      * Create web access control list
      * @param rules the list of rules to attach to the ACL
      * @private
@@ -109,6 +139,87 @@ export class ClientStack extends AbstractConfigStack {
         };
 
         return new CfnWebACL(this, this.getId('acl'), props);
+    }
+
+    /**
+     * Create a CloudFront function by reading the code from the file with the same name
+     * @param functionName the name of the function; needs to match the file in the cf-functions folder
+     * @param comment the description of the function
+     * @private
+     */
+    private getCloudFrontFunction(
+        functionName: string,
+        comment?: string
+    ): IFunction {
+        const filePath: string = path.join(
+            __dirname,
+            'cf-functions',
+            functionName + '.js'
+        );
+        const code: FunctionCode = FunctionCode.fromFile({
+            filePath
+        });
+        const props: FunctionProps = {
+            autoPublish: true,
+            code,
+            comment,
+            functionName
+        };
+
+        return new Function(this, this.getId('cffunction'), props);
+    }
+
+    /**
+     * Parse the function associations list and create the functions from files
+     * @private
+     */
+    private getAssociations(): FunctionAssociation[] {
+        const functions: CustomFunctionAssociation[] = this.config.get(
+            'cloudfront.functions'
+        );
+        const mapper = (
+            value: CustomFunctionAssociation
+        ): FunctionAssociation => {
+            const { comment, eventType, functionName } = value;
+
+            return {
+                function: this.getCloudFrontFunction(functionName, comment),
+                eventType
+            };
+        };
+
+        return functions.map(mapper);
+    }
+
+    /**
+     * Create a CloudFront distribution
+     * @param webAclId the access control list ID
+     * @param origin the default behavior origin object
+     * @param certificate the TLS certificate
+     * @param functionAssociations the CloudFront functions to associate with the default behaviour
+     * @private
+     */
+    private getDistribution(
+        webAclId: string,
+        origin: IOrigin,
+        certificate?: ICertificate,
+        functionAssociations?: FunctionAssociation[]
+    ): IDistribution {
+        const configProps: Object = this.config.get('cloudfront.props');
+        const defaultBehavior: BehaviorOptions = {
+            origin,
+            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+            allowedMethods: AllowedMethods.ALLOW_GET_HEAD,
+            functionAssociations
+        };
+        const props: DistributionProps = {
+            ...configProps,
+            certificate,
+            defaultBehavior,
+            webAclId
+        };
+
+        return new Distribution(this, this.getId('cdn'), props);
     }
 
     /**
@@ -171,42 +282,6 @@ export class ClientStack extends AbstractConfigStack {
     }
 
     /**
-     * Create a CloudFront distribution
-     * @param webAclId the access control list ID
-     * @param origin the default behavior origin object
-     * @param certificate the TLS certificate
-     * @private
-     */
-    private getDistribution(
-        webAclId: string,
-        origin: IOrigin,
-        certificate?: ICertificate
-    ): IDistribution {
-        const errorResponses: ErrorResponse[] = this.config.get(
-            'cloudfront.errorResponses'
-        );
-        const domainNames: string[] = this.config.get('cloudfront.domainNames');
-        const defaultRootObject: string | undefined = this.config.get(
-            'cloudfront.defaultRootObject'
-        );
-        const defaultBehavior: BehaviorOptions = {
-            origin,
-            viewerProtocolPolicy: ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
-            allowedMethods: AllowedMethods.ALLOW_GET_HEAD
-        };
-        const props: DistributionProps = {
-            certificate,
-            defaultBehavior,
-            errorResponses,
-            defaultRootObject,
-            webAclId,
-            domainNames
-        };
-
-        return new Distribution(this, this.getId('cdn'), props);
-    }
-
-    /**
      * Create a distribution origin object for a given bucket
      * @param bucket the bucket to use an origin for the default behavior of the distribution
      * @private
@@ -251,23 +326,19 @@ export class ClientStack extends AbstractConfigStack {
         );
     }
 
+    private getRecordTarget(distribution: IDistribution): RecordTarget {
+        return RecordTarget.fromAlias(new CloudFrontTarget(distribution));
+    }
+
     /**
      * Create an A record to add a custom domain for the distribution
      * @param zone the hosted zone used to create the domain record
-     * @param distribution the object that the record points to
+     * @param target the target object that the record points to
      * @private
      */
-    private getARecord(
-        zone: IHostedZone,
-        distribution: IDistribution
-    ): ARecord {
-        const recordName: string = this.config.get('route53.name');
-        const target: RecordTarget = RecordTarget.fromAlias(
-            new CloudFrontTarget(distribution)
-        );
+    private getARecord(zone: IHostedZone, target: RecordTarget): ARecord {
         const props: ARecordProps = {
             zone,
-            recordName,
             target
         };
 
@@ -277,23 +348,25 @@ export class ClientStack extends AbstractConfigStack {
     /**
      * Create an AAAA record to add a custom domain for the distribution
      * @param zone the hosted zone used to create the domain record
-     * @param distribution the object that the record points to
+     * @param target the target object that the record points to
      * @private
      */
-    private getAaaaRecord(
-        zone: IHostedZone,
-        distribution: IDistribution
-    ): AaaaRecord {
-        const recordName: string = this.config.get('route53.name');
-        const target: RecordTarget = RecordTarget.fromAlias(
-            new CloudFrontTarget(distribution)
-        );
+    private getAaaaRecord(zone: IHostedZone, target: RecordTarget): AaaaRecord {
         const props: AaaaRecordProps = {
             zone,
-            recordName,
             target
         };
 
         return new AaaaRecord(this, this.getId('aaaarecord'), props);
+    }
+
+    private getLogConfig(
+        resourceArn: string,
+        logGroupArn: string
+    ): CfnLoggingConfiguration {
+        return new CfnLoggingConfiguration(this, this.getId('logconfig'), {
+            resourceArn,
+            logDestinationConfigs: [logGroupArn]
+        });
     }
 }

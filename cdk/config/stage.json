@@ -9,17 +9,17 @@
         "props": {
             "defaultRootObject": "index.html",
             "domainNames": ["stage.romihalasz.com"],
-            "enableIpv6": true,
+            "enableIpv6": false,
             "errorResponses": [
                 {
                     "httpStatus": 403,
-                    "responseHttpStatus": 200,
-                    "responsePagePath": "/error.html"
+                    "responseHttpStatus": 403,
+                    "responsePagePath": "/403.html"
                 },
                 {
                     "httpStatus": 404,
-                    "responseHttpStatus": 200,
-                    "responsePagePath": "/error.html"
+                    "responseHttpStatus": 404,
+                    "responsePagePath": "/404.html"
                 }
             ]
         },
@@ -39,14 +39,14 @@
 
     "acl": {
         "ipSetV6": {
-            "addresses": ["2a02:2f09:3703:cd00:74b5:b821:1dd2:d3d6/128"],
+            "addresses": ["2a02:2f09:3703:cd00:8da4:ef52:75ac:6882/128"],
             "ipAddressVersion": "IPV6",
             "name": "rhc-allow-list-ipv6",
             "scope": "CLOUDFRONT"
         },
 
         "ipSetV4": {
-            "addresses": ["86.124.142.138/32"],
+            "addresses": ["86.125.92.25/32"],
             "ipAddressVersion": "IPV4",
             "name": "rhc-allow-list-ipv4",
             "scope": "CLOUDFRONT"

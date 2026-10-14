@@ -19,7 +19,7 @@ export default function HomePage(): ReactElement {
                 specialising in Web technologies. Additional skills also include
                 DevOps, complemented by Cloud Infrastructure design, automation,
                 monitoring and maintenance. Please check out the{' '}
-                <Link href="/about" className="font-medium text-blue-500">
+                <Link href="/about/" className="font-medium text-blue-500">
                     About
                 </Link>{' '}
                 page for more information.
@@ -27,7 +27,7 @@ export default function HomePage(): ReactElement {
 
             <p>
                 To get in touch with me, please head over to the{' '}
-                <Link href="/contact" className="font-medium text-blue-500">
+                <Link href="/contact/" className="font-medium text-blue-500">
                     Contact
                 </Link>{' '}
                 section.

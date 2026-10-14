@@ -9,6 +9,9 @@
         "build:stage": "APP_ENV=stage next build",
         "deploy:stage": "sh deploy-stage.sh",
         "dig:stage": "dig stage.romihalasz.com A +short",
+        "dig:production": "dig romihalasz.com A +short",
+        "lookup:production": "nslookup -type=ns romihalasz.com",
+        "lookup:stage": "nslookup -type=ns stage.romihalasz.com",
         "build:production": "APP_ENV=production next build",
         "start": "next start",
         "start:php": "php -S localhost:8080 -t out"

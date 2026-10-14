@@ -56,15 +56,10 @@ export class ClientStack extends AbstractConfigStack {
         super(scope, id, props);
 
         const bucket: IBucket = this.getS3Bucket();
-        const ipSetV6: IIPSetRef = this.getIpSetV6();
-        const ipSetV4: IIPSetRef = this.getIpSetV4();
-        const rules: CfnWebACL.RuleProperty[] = this.getRules(
-            ipSetV6.ipSetRef.ipSetArn,
-            ipSetV4.ipSetRef.ipSetArn
-        );
+        const rules: CfnWebACL.RuleProperty[] = this.getRules();
         const logGroup: ILogGroup = this.getLogGroup();
         const webAcl: IWebACLRef = this.getWebAcl(rules);
-        const webAclArn: string = webAcl.webAclRef.webAclArn;
+        const { webAclArn } = webAcl.webAclRef;
         const origin: IOrigin = this.getOrigin(bucket);
         const associations: FunctionAssociation[] = this.getAssociations();
         const certificate: ICertificate = this.getCertificate();
@@ -94,26 +89,6 @@ export class ClientStack extends AbstractConfigStack {
         };
 
         return new Bucket(this, this.getId('bucket'), props);
-    }
-
-    /**
-     * Create a version 6 IP set
-     * @private
-     */
-    private getIpSetV6(): IIPSetRef {
-        const props: CfnIPSetProps = this.config.get('acl.ipSetV6');
-
-        return new CfnIPSet(this, this.getId('IPSetV6'), props);
-    }
-
-    /**
-     * Create a version 4 IP set
-     * @private
-     */
-    private getIpSetV4(): IIPSetRef {
-        const props: CfnIPSetProps = this.config.get('acl.ipSetV4');
-
-        return new CfnIPSet(this, this.getId('IPSetV4'), props);
     }
 
     /**
@@ -256,29 +231,42 @@ export class ClientStack extends AbstractConfigStack {
     }
 
     /**
-     * Create a list of rules for allowing traffic using IPV6 and IPV4 addresses
-     * @param ipSetV6Arn the ARN of the version 6 IP set
-     * @param ipSetV4Arn the ARN of the version 4 IP set
+     * Callback function for creating a WAF rule from an IP set
+     * @param props
+     * @param priority
      * @private
      */
-    private getRules(
-        ipSetV6Arn: string,
-        ipSetV4Arn: string
-    ): CfnWebACL.RuleProperty[] {
-        return [
-            this.getIpSetRule(
-                ipSetV6Arn,
-                'ipSetV6AllowList',
-                0,
-                'rhc_acl_metric_ipv6'
-            ),
-            this.getIpSetRule(
-                ipSetV4Arn,
-                'ipSetV4AllowList',
-                1,
-                'rhc_acl_metric_ipv4'
-            )
-        ];
+    private ipSetParser(
+        props: CfnIPSetProps,
+        priority: number
+    ): CfnWebACL.RuleProperty {
+        const { ipAddressVersion } = props;
+        const postFix: string = ipAddressVersion === 'IPV6' ? 'V6' : 'V4';
+        const setId: string = this.getId('IPSet' + postFix);
+        const set: IIPSetRef = new CfnIPSet(this, setId, props);
+        const ruleName: string = 'allowList' + ipAddressVersion;
+        const metricName: string = 'rhc_acl_metric_' + ipAddressVersion;
+
+        return this.getIpSetRule(
+            set.ipSetRef.ipSetArn,
+            ruleName,
+            priority,
+            metricName
+        );
+    }
+
+    /**
+     * Create the ACL rules
+     * @private
+     */
+    private getRules(): CfnWebACL.RuleProperty[] {
+        const ipSetInfo: CfnIPSetProps[] = this.config.get('acl.ipSets');
+        const ipSetRules: CfnWebACL.RuleProperty[] = ipSetInfo.map(
+            this.ipSetParser,
+            this
+        );
+
+        return [...ipSetRules, ...this.config.get('acl.rules')];
     }
 
     /**
@@ -360,6 +348,12 @@ export class ClientStack extends AbstractConfigStack {
         return new AaaaRecord(this, this.getId('aaaarecord'), props);
     }
 
+    /**
+     * Create logging configuration for a supporting resource
+     * @param resourceArn the resource to configure for logging
+     * @param logGroupArn the destination log group
+     * @private
+     */
     private getLogConfig(
         resourceArn: string,
         logGroupArn: string

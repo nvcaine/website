@@ -26,7 +26,7 @@ export default function Page(): ReactElement {
                     To see an in-depth description of my professional skills,
                     please head over to the{' '}
                     <Link
-                        href="/about/skills"
+                        href="/about/skills/"
                         className="font-medium text-blue-500"
                     >
                         Skills
@@ -39,7 +39,7 @@ export default function Page(): ReactElement {
                     information about my work in various companies, please see
                     the{' '}
                     <Link
-                        href="/about/experience"
+                        href="/about/experience/"
                         className="font-medium text-blue-500"
                     >
                         Experience
@@ -51,7 +51,7 @@ export default function Page(): ReactElement {
                     If you would like to see examples of my work, please check
                     out the{' '}
                     <Link
-                        href="/about/projects"
+                        href="/about/projects/"
                         className="font-medium text-blue-500"
                     >
                         Projects

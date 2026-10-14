@@ -38,19 +38,59 @@
     },
 
     "acl": {
-        "ipSetV6": {
-            "addresses": ["2a02:2f09:3703:cd00:8da4:ef52:75ac:6882/128"],
-            "ipAddressVersion": "IPV6",
-            "name": "rhc-allow-list-ipv6",
-            "scope": "CLOUDFRONT"
-        },
+        "ipSets": [
+            {
+                "addresses": ["2a02:2f09:3703:cd00:8da4:ef52:75ac:6882/128"],
+                "ipAddressVersion": "IPV6",
+                "name": "rhc-allow-list-ipv6",
+                "scope": "CLOUDFRONT"
+            },
+            {
+                "addresses": ["86.125.92.25/32"],
+                "ipAddressVersion": "IPV4",
+                "name": "rhc-allow-list-ipv4",
+                "scope": "CLOUDFRONT"
+            }
+        ],
 
-        "ipSetV4": {
-            "addresses": ["86.125.92.25/32"],
-            "ipAddressVersion": "IPV4",
-            "name": "rhc-allow-list-ipv4",
-            "scope": "CLOUDFRONT"
-        },
+        "rules": [
+            {
+                "name": "GeoBlockRule",
+                "priority": 2,
+                "action": {
+                    "block": {}
+                },
+                "statement": {
+                    "geoMatchStatement": {
+                        "countryCodes": ["BY", "CU", "IR", "KP", "RU", "SY"]
+                    }
+                },
+                "visibilityConfig": {
+                    "sampledRequestsEnabled": true,
+                    "cloudWatchMetricsEnabled": true,
+                    "metricName": "rhc_acl_metric_CountryCode"
+                }
+            },
+            {
+                "name": "RateLimitRule",
+                "priority": 3,
+                "action": {
+                    "block": {}
+                },
+                "statement": {
+                    "rateBasedStatement": {
+                        "limit": 1000,
+                        "aggregateKeyType": "IP",
+                        "evaluationWindowSec": 300
+                    }
+                },
+                "visibilityConfig": {
+                    "sampledRequestsEnabled": true,
+                    "cloudWatchMetricsEnabled": true,
+                    "metricName": "rhc_acl_metric_RateLimit"
+                }
+            }
+        ],
 
         "logs": {
             "logGroupName": "aws-waf-logs-rhc-acl",

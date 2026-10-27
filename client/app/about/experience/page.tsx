@@ -18,7 +18,7 @@ export default function Page(): ReactElement {
                     companies.
                 </p>
 
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Senior Developer - Qualcomm Austria 2021 - 2024
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -39,7 +39,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Full-Stack Developer - Wikitude 2019 - 2021
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -59,7 +59,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Web Developer - 123 Form Builder 2017 - 2019
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -76,7 +76,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Mobile Developer - Veridium 2016 - 2017
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -91,7 +91,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Software/Lead Developer - ISoftBet 2011 - 2016
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -110,7 +110,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Software Developer - TechTeam Akela 2010 - 2011
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -128,7 +128,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Web Developer - Interact 2009 - 2010
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -144,7 +144,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Web Developer - Studio 45 2008 - 2010
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -162,7 +162,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Web Developer - InHive Media 2005 - 2008
                 </h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">

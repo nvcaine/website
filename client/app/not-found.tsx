@@ -13,7 +13,7 @@ export default function Page(): ReactElement {
             </p>
             <p className="text-center text-slate-300 py-3">
                 Back to the{' '}
-                <Link href="/" className="font-medium text-blue-400 hover:text-blue-300 transition-colors">
+                <Link href="/" className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors">
                     main page
                 </Link>
             </p>

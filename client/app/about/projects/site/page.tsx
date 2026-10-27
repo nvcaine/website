@@ -12,7 +12,7 @@ export default function Page(): ReactElement {
                 label="Projects"
             />
 
-            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Writing the code</h2>
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Writing the code</h2>
             <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 When faced with a new project, the first step is choosing the
                 language for writing the code. This was a simple choice as most
@@ -25,7 +25,7 @@ export default function Page(): ReactElement {
                 <Link
                     href="https://nextjs.org/"
                     target="_blank"
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                 >
                     Next.js
                 </Link>
@@ -37,7 +37,7 @@ export default function Page(): ReactElement {
                 <Link
                     href="https://tailwindcss.com/"
                     target="_blank"
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                 >
                     Tailwind
                 </Link>
@@ -49,14 +49,14 @@ export default function Page(): ReactElement {
                 <Link
                     href="https://github.com/nvcaine/website"
                     target="_blank"
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                 >
                     GitHub repository
                 </Link>
                 .
             </p>
 
-            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                 Designing and deploying the infrastructure
             </h2>
             <p className="py-3 text-slate-300 leading-relaxed text-justify">
@@ -70,7 +70,7 @@ export default function Page(): ReactElement {
                 <Link
                     href="https://aws.amazon.com/"
                     target="_blank"
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                 >
                     AWS
                 </Link>
@@ -92,7 +92,7 @@ export default function Page(): ReactElement {
                 />
             </div>
 
-            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Maintenance</h2>
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Maintenance</h2>
             <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 The main objective was to provide an automated approach to
                 deploying code updates.

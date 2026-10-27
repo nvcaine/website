@@ -17,7 +17,7 @@ export default function Layout({ children }: { children: ReactNode }) {
                 <div className="flex justify-end">
                     <button
                         onClick={scrollToTop}
-                        className="flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                        className="flex items-center gap-1.5 text-sm text-phthalo-400 hover:text-phthalo-300 transition-colors font-medium"
                     >
                         <svg
                             className="mr-2"

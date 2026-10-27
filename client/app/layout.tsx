@@ -32,7 +32,7 @@ export default function Layout({
                     {children}
                 </main>
 
-                <footer className="flex items-center justify-center h-14 bg-slate-900 border-t border-slate-700 text-slate-400 text-sm sm:px-24 px-5">
+                <footer className="flex items-center justify-center h-14 bg-phthalo-900 border-t border-phthalo-800 text-slate-400 text-sm sm:px-24 px-5">
                     <div>&copy; {new Date().getFullYear()} Romuald Halasz</div>
                 </footer>
             </body>

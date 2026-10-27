@@ -10,7 +10,7 @@ interface SidebarProps {
 
 export default function Sidebar(props: SidebarProps): ReactElement {
     const imageElement: ReactElement | undefined = props.showPhoto ? (
-        <div className="rounded-lg overflow-hidden ring-1 ring-slate-700 shadow-xl">
+        <div className="rounded-lg overflow-hidden ring-1 ring-phthalo-800 shadow-xl">
             <Image
                 src="/images/photo.jpg"
                 className="w-full max-h-64 object-cover"

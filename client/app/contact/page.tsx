@@ -15,7 +15,7 @@ export default function Page(): ReactElement {
             <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 You can send me an email directly at{' '}
                 <Link
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                     href="mailto:romi.m.halasz@gmail.com"
                 >
                     romi.m.halasz@gmail.com
@@ -25,7 +25,7 @@ export default function Page(): ReactElement {
             <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 Or you can find me on{' '}
                 <Link
-                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                    className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                     href="https://www.linkedin.com/in/romihalasz
 "
                 >

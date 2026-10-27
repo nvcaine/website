@@ -15,8 +15,8 @@ export function MenuLink(props: MenuLinkProps): ReactElement {
     return (
         <li
             className={clsx('py-1 px-3 rounded-md transition-colors', {
-                'bg-blue-600/20 text-blue-400 font-semibold': highlight,
-                'text-slate-300 hover:text-white hover:bg-slate-800': !highlight
+                'bg-phthalo-600/20 text-phthalo-400 font-semibold': highlight,
+                'text-slate-300 hover:text-white hover:bg-phthalo-800/60': !highlight
             })}
         >
             <Link

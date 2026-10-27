@@ -8,7 +8,7 @@ export default function Page(): ReactElement {
             <ProjectNav title="A little bit about me" label="Home" link="/" />
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">
                     Professional experience
                 </h2>
 
@@ -27,7 +27,7 @@ export default function Page(): ReactElement {
                     please head over to the{' '}
                     <Link
                         href="/about/skills/"
-                        className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                     >
                         Skills
                     </Link>{' '}
@@ -40,7 +40,7 @@ export default function Page(): ReactElement {
                     the{' '}
                     <Link
                         href="/about/experience/"
-                        className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                     >
                         Experience
                     </Link>{' '}
@@ -52,7 +52,7 @@ export default function Page(): ReactElement {
                     out the{' '}
                     <Link
                         href="/about/projects/"
-                        className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                        className="font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                     >
                         Projects
                     </Link>{' '}
@@ -61,7 +61,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Volunteering</h2>
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Volunteering</h2>
 
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     I am also involved in the local Developer community, as I

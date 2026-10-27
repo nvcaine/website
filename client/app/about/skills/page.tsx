@@ -18,7 +18,7 @@ export default function Page(): ReactElement {
             </p>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Frontend</h2>
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Frontend</h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     Having worked with multiple tools since the early days of{' '}
                     <strong>jQuery</strong> and specialising in Web Application
@@ -45,7 +45,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Backend</h2>
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Backend</h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     Starting my professional career as a backend developer, most
                     of my experience lies in this area. The bulk of my work
@@ -63,7 +63,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">DevOps</h2>
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">DevOps</h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     Automating processes offers multiple advantages for Software
                     Development, reducing human error and work time. Continuous
@@ -81,7 +81,7 @@ export default function Page(): ReactElement {
             </div>
 
             <div>
-                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Cloud infrastructure</h2>
+                <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-phthalo-500 pl-3">Cloud infrastructure</h2>
                 <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     With IaaS becoming ever-more popular, no full-stack skill
                     set is complete without infrastructure. Understanding the

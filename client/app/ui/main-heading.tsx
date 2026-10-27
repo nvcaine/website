@@ -13,7 +13,7 @@ export default function MainHeading({
     return (
         <h1
             className={clsx('text-2xl font-bold py-4 tracking-tight text-white', {
-                'border-b border-slate-700': !hideBorder
+                'border-b border-phthalo-800/80': !hideBorder
             })}
         >
             {children}

@@ -54,7 +54,7 @@ export default function Page(): ReactElement {
         <>
             <ProjectNav title="My work" label="About" link="/about" />
 
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 This section contains a few selected examples of my personal
                 projects.
             </p>

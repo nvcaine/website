@@ -9,9 +9,9 @@ export function Sidebar(): ReactElement {
     const pathname: string = usePathname();
 
     return (
-        <aside className="sticky top-16 md:pt-12">
+        <aside className="sticky top-20 pt-8">
             <MenuList
-                listClass="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rtl:space-x-reverse md:mt-0 md:border-0"
+                listClass="flex flex-col gap-1 font-medium"
                 links={ABOUT_LINKS}
                 path={pathname}
             />

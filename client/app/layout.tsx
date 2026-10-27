@@ -28,11 +28,11 @@ export default function Layout({
             <body className={inter.className}>
                 <NavMain />
 
-                <main className="flex min-h-screen flex-col items-center justify-between py-16 sm:px-24 px-4">
+                <main className="flex min-h-screen flex-col items-center justify-between pt-20 pb-12 sm:px-24 px-5 max-w-screen-xl mx-auto w-full">
                     {children}
                 </main>
 
-                <footer className="flex bg-gray-800 border-t border-gray-600 sm:px-24 px-4">
+                <footer className="flex items-center justify-center h-14 bg-slate-900 border-t border-slate-700 text-slate-400 text-sm sm:px-24 px-5">
                     <div>&copy; {new Date().getFullYear()} Romuald Halasz</div>
                 </footer>
             </body>

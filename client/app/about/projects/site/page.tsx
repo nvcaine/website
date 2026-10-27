@@ -12,65 +12,65 @@ export default function Page(): ReactElement {
                 label="Projects"
             />
 
-            <h2 className="pt-8 text-lg font-bold">Writing the code</h2>
-            <p>
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Writing the code</h2>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 When faced with a new project, the first step is choosing the
                 language for writing the code. This was a simple choice as most
                 of my latest experience relies on TypeScript, with Node.js as
                 runtime environment.
             </p>
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 Additional considerations regarded how to package the website
                 and I decided the best fit for this project was to go with{' '}
                 <Link
                     href="https://nextjs.org/"
                     target="_blank"
-                    className="font-medium text-blue-500"
+                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
                 >
                     Next.js
                 </Link>
                 . The main consideration for this decision was the framework's
                 ease of exporting React applications to static HTML.
             </p>
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 Another helpful addition to the project was{' '}
                 <Link
                     href="https://tailwindcss.com/"
                     target="_blank"
-                    className="font-medium text-blue-500"
+                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
                 >
                     Tailwind
                 </Link>
                 . It is a powerful CSS framework that makes the layout and
                 interface design fast and easy.
             </p>
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 To take a closer look at the code, please head over to the&nbsp;
                 <Link
                     href="https://github.com/nvcaine/website"
                     target="_blank"
-                    className="font-medium text-blue-500"
+                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
                 >
                     GitHub repository
                 </Link>
                 .
             </p>
 
-            <h2 className="pt-8 text-lg font-bold">
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">
                 Designing and deploying the infrastructure
             </h2>
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 Since I decided to package the project as a static website, the
                 most intuitive solution would be to use a CDN. As a significant
                 advantage, TypeScript can also be used for defining the
                 infrastructure resources, using Infrastructure as Code (IaC).
             </p>
-            <p>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 The platform for deploying the infrastructure is{' '}
                 <Link
                     href="https://aws.amazon.com/"
                     target="_blank"
-                    className="font-medium text-blue-500"
+                    className="font-medium text-blue-400 hover:text-blue-300 transition-colors"
                 >
                     AWS
                 </Link>
@@ -80,7 +80,7 @@ export default function Page(): ReactElement {
             </p>
 
             <div>
-                <p>
+                <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     The following diagram shows all the infrastructure
                     components and how they are integrated:
                 </p>
@@ -92,14 +92,14 @@ export default function Page(): ReactElement {
                 />
             </div>
 
-            <h2 className="pt-8 text-lg font-bold">Maintenance</h2>
-            <p>
+            <h2 className="pt-8 text-lg font-semibold text-slate-200 border-l-2 border-blue-500 pl-3">Maintenance</h2>
+            <p className="py-3 text-slate-300 leading-relaxed text-justify">
                 The main objective was to provide an automated approach to
                 deploying code updates.
             </p>
 
             <div>
-                <p>
+                <p className="py-3 text-slate-300 leading-relaxed text-justify">
                     Whenever a update is pushed to the code repository, a build
                     job is started that compiles the code to static HTML. Once
                     the files are ready, they are uploaded to the storage bucket

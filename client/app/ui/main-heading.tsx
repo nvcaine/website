@@ -12,9 +12,8 @@ export default function MainHeading({
 }: MainHeadingProps): ReactElement {
     return (
         <h1
-            className={clsx('text-xl py-4', {
-                'border-b': !hideBorder,
-                'border-gray-600': !hideBorder
+            className={clsx('text-2xl font-bold py-4 tracking-tight text-white', {
+                'border-b border-slate-700': !hideBorder
             })}
         >
             {children}

@@ -7,17 +7,17 @@ const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
 
 export default function Layout({ children }: { children: ReactNode }) {
     return (
-        <div className="sm:flex sm:flex-row w-[100%]">
-            <div className="sm:basis-1/4 hidden sm:block landing-left">
+        <div className="sm:flex sm:flex-row w-full">
+            <div className="sm:basis-1/4 hidden sm:block sm:pr-8">
                 <Sidebar />
             </div>
 
-            <div className="sm:basis-3/4 landing-right py-6">
+            <div className="sm:basis-3/4 sm:pl-8 py-6">
                 {children}
                 <div className="flex justify-end">
                     <button
                         onClick={scrollToTop}
-                        className="flex flex-wrap justify-end font-medium text-blue-500"
+                        className="flex items-center gap-1.5 text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
                     >
                         <svg
                             className="mr-2"

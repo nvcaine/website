@@ -25,10 +25,10 @@ export default function Layout({
             data-env={process.env.APP_ENV}
             data-version={process.env.npm_package_version}
         >
-            <body className={inter.className}>
+            <body className={`${inter.className} flex flex-col min-h-screen`}>
                 <NavMain />
 
-                <main className="flex min-h-screen flex-col items-center justify-between pt-20 pb-12 sm:px-24 px-5 max-w-screen-xl mx-auto w-full">
+                <main className="flex flex-col flex-grow items-center justify-between pt-20 pb-12 sm:px-24 px-5 max-w-screen-xl mx-auto w-full">
                     {children}
                 </main>
 

@@ -33,7 +33,7 @@ export default function ProjectLink(props: ProjectLinkProps): ReactElement {
             <div className="basis-3/4">
                 <h2 className="text-lg font-bold">{title}</h2>
                 <p>{description}</p>
-                <div className="flex flex-wrap">{svgIcons?.map(mapper)}</div>
+                <div className="flex flex-wrap mb-4">{svgIcons?.map(mapper)}</div>
             </div>
         </Link>
     );

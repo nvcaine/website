@@ -32,7 +32,7 @@ export default function Page(): ReactElement {
                     Mobile Development in <strong>Java</strong>.
                 </p>
 
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Javascript" src={ICONS.JAVASCRIPT} />
                     <SvgIcon alt="Angular" src={ICONS.ANGULAR} />
                     <SvgIcon alt="React" src={ICONS.REACT} />
@@ -56,7 +56,7 @@ export default function Page(): ReactElement {
                     The tools I work with the most include{' '}
                     <strong>Node.JS</strong> and <strong>PHP</strong>.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Node" src={ICONS.NODE} />
                     <SvgIcon alt="PHP" src={ICONS.PHP} />
                 </div>
@@ -73,7 +73,7 @@ export default function Page(): ReactElement {
                     My focus in this area is <strong>Jenkins</strong>,{' '}
                     <strong>Docker</strong> and <strong>Bash</strong> scripting.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Jenkins" src={ICONS.JENKINS} />
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                     <SvgIcon alt="Bash" src={ICONS.BASH} />
@@ -93,7 +93,7 @@ export default function Page(): ReactElement {
                     <strong>AWS</strong> is the main tool I use for defining and
                     deploying the infrastructure running my code.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="AWS" src={ICONS.AWS} />
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
                 </div>

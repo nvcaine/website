@@ -26,7 +26,7 @@ export default function Page(): ReactElement {
                     updating and automating cloud infrastructure and project
                     deployments for an online eXtended Reality (XR) platform.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Node.js" src={ICONS.NODE} />
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
                     <SvgIcon alt="React" src={ICONS.REACT} />
@@ -49,7 +49,7 @@ export default function Page(): ReactElement {
                     well as unit testing, automation and infrastructure.
                     Additional tasks include technical support for customers.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Node.js" src={ICONS.NODE} />
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
                     <SvgIcon alt="Docker" src={ICONS.DOCKER} />
@@ -69,7 +69,7 @@ export default function Page(): ReactElement {
                     specifications, integrating third-party technologies and
                     handling customer feedback.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Typescript" src={ICONS.TYPESCRIPT} />
                     <SvgIcon alt="PHP" src={ICONS.PHP} />
                 </div>
@@ -84,7 +84,7 @@ export default function Page(): ReactElement {
                     platform, my tasks included feature implementation,
                     deployment and backend integration.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Java" src={ICONS.JAVA} />
                     <SvgIcon alt="Android" src={ICONS.ANDROID} />
                 </div>
@@ -100,7 +100,7 @@ export default function Page(): ReactElement {
                     Developer additional tasks included designing project
                     architecture, provide updates, assist team members.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Adobe Flex" src={ICONS.FLEX} />
                     <SvgIcon alt="Javascript" src={ICONS.JAVASCRIPT} />
                     <SvgIcon alt="JQuery" src={ICONS.JQUERY} />
@@ -119,7 +119,7 @@ export default function Page(): ReactElement {
                     tasks included mainly frontend feature development, and
                     integrating third-party libraries.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="Adobe Flex" src={ICONS.FLEX} />
                     <SvgIcon alt="Google Maps" src={ICONS.GOOGLE} />
                     <SvgIcon alt="Bing Maps" src={ICONS.BING} />
@@ -135,7 +135,7 @@ export default function Page(): ReactElement {
                     As Web Developer my main focus was implementing websites and
                     online platforms. Tasks include both frontend and backend.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="PHP" src={ICONS.PHP} />
                     <SvgIcon alt="jQuery" src={ICONS.JQUERY} />
                     <SvgIcon alt="HTML 5" src={ICONS.HTML} />
@@ -152,7 +152,7 @@ export default function Page(): ReactElement {
                     according to design specifications and maintaining existing
                     projects.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="PHP" src={ICONS.PHP} />
                     <SvgIcon alt="Wordpress" src={ICONS.WORDPRESS} />
                     <SvgIcon alt="jQuery" src={ICONS.JQUERY} />
@@ -171,7 +171,7 @@ export default function Page(): ReactElement {
                     themes. Tasks covered interface and server implementation,
                     testing and maintenance.
                 </p>
-                <div className="flex flex-wrap">
+                <div className="flex flex-wrap mb-4">
                     <SvgIcon alt="PHP" src={ICONS.PHP} />
                     <SvgIcon alt="Wordpress" src={ICONS.WORDPRESS} />
                     <SvgIcon alt="jQuery" src={ICONS.JQUERY} />

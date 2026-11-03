@@ -21,10 +21,10 @@ export function NavMain(): ReactElement {
     const isAboutPage: boolean = path.includes('/about');
 
     return (
-        <nav className="bg-gray-800 fixed w-full z-20 top-0 start-0 min-h-16 border-b border-gray-600">
+        <nav className="bg-phthalo-900/95 backdrop-blur-sm fixed w-full z-20 top-0 start-0 min-h-16 border-b border-phthalo-800/60">
             <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-3 md:p-3.5">
                 <NavToggle
-                    buttonClass="inline-flex items-center p-1 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
+                    buttonClass="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg md:hidden text-slate-400 hover:bg-phthalo-800 focus:outline-none focus:ring-2 focus:ring-phthalo-500 transition-colors"
                     targetId={navbarId}
                     onClick={getMenuClickHandler(navbarId, sidebarId)}
                     svgPath="M1 1h15M1 7h15M1 13h15"
@@ -35,7 +35,7 @@ export function NavMain(): ReactElement {
 
                 {isAboutPage && (
                     <NavToggle
-                        buttonClass="inline-flex items-center p-1 w-10 h-10 justify-center text-sm rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 text-gray-400 hover:bg-gray-700 focus:ring-gray-600"
+                        buttonClass="inline-flex items-center p-2 w-10 h-10 justify-center rounded-lg md:hidden text-slate-400 hover:bg-phthalo-800 focus:outline-none focus:ring-2 focus:ring-phthalo-500 transition-colors"
                         targetId={sidebarId}
                         onClick={getMenuClickHandler(sidebarId, navbarId)}
                         svgPath="M1 1h5M1 7h15M1 13h15"

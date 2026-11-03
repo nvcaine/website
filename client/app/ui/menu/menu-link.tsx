@@ -14,17 +14,16 @@ export function MenuLink(props: MenuLinkProps): ReactElement {
 
     return (
         <li
-            className={clsx('py-2 px-3 md:py-1', {
-                'border-b-blue-700': highlight,
-                'border-b-4': highlight,
-                'mb-1': !highlight
+            className={clsx('py-1 px-3 rounded-md transition-colors', {
+                'bg-phthalo-600/20 text-phthalo-400 font-semibold': highlight,
+                'text-slate-300 hover:text-white hover:bg-phthalo-800/60': !highlight
             })}
         >
             <Link
                 key={link.name}
                 href={link.href}
                 onClick={onClick}
-                className="text-white"
+                className="block"
                 aria-current="page"
             >
                 {link.name}

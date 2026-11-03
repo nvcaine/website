@@ -2,64 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root {
-        --foreground-rgb: 255, 255, 255;
-        --background-start-rgb: 50, 50, 50;
-        --background-end-rgb: 20, 20, 20;
-    }
-}
-
 body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(
-            to bottom,
-            transparent 0px,
-            rgb(var(--background-end-rgb)) 800px
-        )
-        rgb(var(--background-start-rgb));
-}
-
-div.landing {
-    border: 1px solid rgb(var(--foreground-rgb));
-    padding: 5px;
-}
-
-img.landing {
-    max-height: 250px;
-    width: 100%;
-}
-
-@media (min-width: 640px) {
-    .landing-left {
-        padding-right: 2rem;
-    }
-
-    .landing-right {
-        padding-left: 2rem;
-    }
-}
-
-footer {
-    height: 50px;
-    line-height: 50px;
-    margin-top: -50px;
-}
-
-footer div {
-    margin: auto;
-}
-
-p {
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    text-align: justify;
+    @apply bg-phthalo-950 text-slate-100;
 }
 
 @layer utilities {

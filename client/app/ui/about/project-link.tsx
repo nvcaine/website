@@ -22,18 +22,18 @@ export default function ProjectLink(props: ProjectLinkProps): ReactElement {
     const { alt, description, href, imagePath, svgIcons, title } = props;
 
     return (
-        <Link href={href} className="flex flex-wrap">
+        <Link href={href} className="flex flex-wrap rounded-xl p-4 border border-phthalo-900 hover:border-phthalo-700 hover:bg-phthalo-900/40 transition-all">
             <div className="basis-1/4 pr-6">
                 <Image
                     src={imagePath}
                     alt={alt}
-                    className="border border-gray-700 p-0.5 m-auto"
+                    className="rounded-md border border-phthalo-800 m-auto"
                 />
             </div>
             <div className="basis-3/4">
                 <h2 className="text-lg font-bold">{title}</h2>
                 <p>{description}</p>
-                <div className="flex flex-wrap">{svgIcons?.map(mapper)}</div>
+                <div className="flex flex-wrap mb-4">{svgIcons?.map(mapper)}</div>
             </div>
         </Link>
     );

@@ -11,10 +11,10 @@ interface ProjectHeadingProps {
 export default function ProjectNav(props: ProjectHeadingProps): ReactElement {
     const { title, link, label } = props;
     return (
-        <div className="flex flex-wrap justify-between border-b border-gray-600">
+        <div className="flex flex-wrap justify-between border-b border-phthalo-800/80 mb-2">
             <MainHeading hideBorder={true}>{title}</MainHeading>
             <Link
-                className="flex flex-wrap justify-end font-medium text-blue-500 items-center"
+                className="flex items-center gap-1.5 text-sm font-medium text-phthalo-400 hover:text-phthalo-300 transition-colors"
                 href={link}
             >
                 <svg

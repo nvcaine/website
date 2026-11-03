@@ -10,10 +10,10 @@ interface SidebarProps {
 
 export default function Sidebar(props: SidebarProps): ReactElement {
     const imageElement: ReactElement | undefined = props.showPhoto ? (
-        <div className="border border-gray-600 p-1">
+        <div className="rounded-lg overflow-hidden ring-1 ring-phthalo-800 shadow-xl">
             <Image
                 src="/images/photo.jpg"
-                className="landing"
+                className="w-full max-h-64 object-cover"
                 alt=""
                 width={100}
             />
@@ -24,11 +24,11 @@ export default function Sidebar(props: SidebarProps): ReactElement {
         <div className="flex flex-col items-center">
             {imageElement}
 
-            <div className="pt-3">Romi Halasz</div>
+            <div className="pt-4 text-lg font-semibold text-white tracking-tight">Romi Halasz</div>
 
-            <div className="text-center">Full-Stack Cloud Developer</div>
+            <div className="text-slate-400 text-sm text-center">Full-Stack Cloud Developer</div>
 
-            <div className="flex flex-wrap">
+            <div className="flex gap-1 mt-3">
                 <Link href="https://github.com/nvcaine/" target="_blank">
                     <SvgIcon alt="Javascript" src={ICONS.GIT} />
                 </Link>
